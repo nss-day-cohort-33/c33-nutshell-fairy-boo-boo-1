@@ -1,5 +1,9 @@
+import { API } from "./api.js"
+
 const welcomeTitle = document.querySelector("#container")
 welcomeTitle.innerHTML = "<h2>Welcome to Nutshell</h2>"
+
+
 
 //Creating Elements for Registration Login
 const registrationParentDiv = document.createElement("div")
@@ -44,6 +48,14 @@ outputLocation.appendChild(loginParentDiv)
 registerButton.addEventListener("click", ()=> {
     const valueRegistrationEmail = document.getElementById("registrationEmailId").value
     const valueRegistrationUser = document.getElementById("registrationUserId").value
+    const oneUser = {
+        username: `${valueRegistrationUser}`,
+        email: `${valueRegistrationEmail}`
+    }
+    API.postJournalEntries(oneUser).then(data => data.json).then(id =>
+        console.log("id", id))
+    sessionStorage.setItem("email", valueRegistrationEmail)
+    sessionStorage.setItem("username", valueRegistrationUser)
     console.log(valueRegistrationEmail)
     console.log(valueRegistrationUser)
 })
@@ -52,6 +64,8 @@ registerButton.addEventListener("click", ()=> {
 loginButton.addEventListener("click", ()=> {
     const valueLoginEmail = document.getElementById("loginEmailId").value
     const valueLoginUser = document.getElementById("loginUserId").value
+    sessionStorage.setItem("email", valueLoginEmail)
+    sessionStorage.setItem("username", valueLoginUser)
     console.log(valueLoginEmail)
     console.log(valueLoginUser)
 })
