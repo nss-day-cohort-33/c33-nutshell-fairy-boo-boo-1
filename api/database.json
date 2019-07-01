@@ -3,27 +3,27 @@
     {
       "id": 1,
       "username": "Steve 1",
-      "email": "steve@me.com"
+      "password": "steve@me.com"
     },
     {
       "id": 2,
       "username": "Steven 2",
-      "email": "Steven@me.com"
+      "password": "Steven@me.com"
     },
     {
       "id": 3,
       "username": "Steves 3",
-      "email": "Steves3@me.com"
+      "password": "Steves3@me.com"
     },
     {
       "id": 4,
       "username": "Steveeee 4",
-      "email": "Steveeee4@me.com"
+      "password": "Steveeee4@me.com"
     },
     {
       "id": 5,
       "username": "Evets 5",
-      "email": "Evets5@me.com"
+      "password": "Evets5@me.com"
     },
     {
       "id": 6,
@@ -32,18 +32,33 @@
     },
     {
       "username": "tomlin",
-      "email": "terry",
+      "password": "terry",
       "id": 7
     },
     {
       "username": "Simpson",
-      "email": "sampson",
+      "password": "sampson",
       "id": 8
     },
     {
       "username": "tillues",
-      "email": "Sully CLementine",
+      "password": "Sully CLementine",
       "id": 9
+    },
+    {
+      "username": "gallegos",
+      "password": "karla",
+      "id": 10
+    },
+    {
+      "username": "password",
+      "password": "kgallegos",
+      "id": 11
+    },
+    {
+      "username": "DeRamus",
+      "password": "misty",
+      "id": 12
     }
   ],
   "comments": [
