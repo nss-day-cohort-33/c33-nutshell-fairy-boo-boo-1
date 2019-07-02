@@ -17,6 +17,11 @@ const userRegistration = document.createElement("input")
 const loginButton = document.createElement("button")
 loginButton.textContent = "login"
 
+const registrationButton = document.createElement("button")
+registrationButton.textContent = "register"
+
+
+
 //Setting ID's for Registration Elements
 registrationParentDiv.setAttribute("id", "registrationParentDivId")
 passwordRegistration.setAttribute("id", "registrationpasswordId")
@@ -58,6 +63,7 @@ newUserHeader.addEventListener("click", ()=> {
 document.querySelector("#loginButtonId").style.display = "none"
 document.querySelector("#loginHeaderId").textContent = "Please register Below"
 document.querySelector("#registerUserLinkId").style.display = "none"
+registrationParentDiv.appendChild(registrationButton)
 })
 
 
