@@ -1,14 +1,79 @@
 {
-  "posts": [
+  "users": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "username": "Steve 1",
+      "password": "steve@me.com"
     },
     {
       "id": 2,
-      "title": "json-server",
-      "author": "typicode"
+      "username": "Steven 2",
+      "password": "Steven@me.com"
+    },
+    {
+      "id": 3,
+      "username": "Steves 3",
+      "password": "Steves3@me.com"
+    },
+    {
+      "id": 4,
+      "username": "Steveeee 4",
+      "password": "Steveeee4@me.com"
+    },
+    {
+      "id": 5,
+      "username": "Evets 5",
+      "password": "Evets5@me.com"
+    },
+    {
+      "id": 6,
+      "title": "Evens 6",
+      "author": "Events6@me.com"
+    },
+    {
+      "username": "tomlin",
+      "password": "terry",
+      "id": 7
+    },
+    {
+      "username": "Simpson",
+      "password": "sampson",
+      "id": 8
+    },
+    {
+      "username": "tillues",
+      "password": "Sully CLementine",
+      "id": 9
+    },
+    {
+      "username": "gallegos",
+      "password": "karla",
+      "id": 10
+    },
+    {
+      "username": "password",
+      "password": "kgallegos",
+      "id": 11
+    },
+    {
+      "username": "DeRamus",
+      "password": "misty",
+      "id": 12
+    },
+    {
+      "username": "",
+      "password": "",
+      "id": 13
+    },
+    {
+      "username": "",
+      "password": "",
+      "id": 14
+    },
+    {
+      "username": "",
+      "password": "",
+      "id": 15
     }
   ],
   "comments": [
