@@ -14,32 +14,31 @@ newUserHeader.setAttribute("id", "registerUserLinkId")
 const registrationParentDiv = document.createElement("div")
 const passwordRegistration = document.createElement("input")
 const userRegistration = document.createElement("input")
-const registerButton = document.createElement("button")
-registerButton.textContent = "login"
+const loginButton = document.createElement("button")
+loginButton.textContent = "login"
 
 //Setting ID's for Registration Elements
 registrationParentDiv.setAttribute("id", "registrationParentDivId")
 passwordRegistration.setAttribute("id", "registrationpasswordId")
 userRegistration.setAttribute("id", "registrationUserId")
-registerButton.setAttribute("id", "registerButtonId")
+loginButton.setAttribute("id", "loginButtonId")
 
 //Attaching Elements to the DOM
 registrationParentDiv.appendChild(loginHeader)
 registrationParentDiv.appendChild(passwordRegistration)
 registrationParentDiv.appendChild(userRegistration)
-registrationParentDiv.appendChild(registerButton)
+registrationParentDiv.appendChild(loginButton)
 registrationParentDiv.appendChild(newUserHeader)
-
 
 //Putting it in the DOM
 const outputLocation = document.querySelector("#container")
 outputLocation.appendChild(registrationParentDiv)
 
-//Adding event listener to register button
-registerButton.addEventListener("click", ()=> {
+//Adding event listener to login button
+loginButton.addEventListener("click", ()=> {
     //TODO: check to see if the user exists in the database
-    //if the user exists, log them in. If user doesn't exist offer the the chance to /////register and remove login button and replace with register button.
-    //need event listener on a new register button.
+    //if the user exists, log them in. If user doesn't exist offer the the chance to /////login and remove login button and replace with login button.
+    //need event listener on a new login button.
     const valueRegistrationpassword = document.getElementById("registrationpasswordId").value
     const valueRegistrationUser = document.getElementById("registrationUserId").value
     const oneUser = {
@@ -56,8 +55,8 @@ registerButton.addEventListener("click", ()=> {
 
 newUserHeader.addEventListener("click", ()=> {
 //TODO: console.log("link clicked")
-document.querySelector("#registerButtonId").style.display = "none"
-document.querySelector("#loginHeaderId").textContent = "Please Register Below"
+document.querySelector("#loginButtonId").style.display = "none"
+document.querySelector("#loginHeaderId").textContent = "Please register Below"
 document.querySelector("#registerUserLinkId").style.display = "none"
 })
 
