@@ -21,17 +21,18 @@ const registrationButton = document.createElement("button")
 registrationButton.textContent = "register"
 
 
-
 //Setting ID's for Registration Elements
 registrationParentDiv.setAttribute("id", "registrationParentDivId")
 passwordRegistration.setAttribute("id", "registrationpasswordId")
+passwordRegistration.setAttribute("placeholder", "password")
 userRegistration.setAttribute("id", "registrationUserId")
+userRegistration.setAttribute("placeholder", "username")
 loginButton.setAttribute("id", "loginButtonId")
 
 //Attaching Elements to the DOM
 registrationParentDiv.appendChild(loginHeader)
-registrationParentDiv.appendChild(passwordRegistration)
 registrationParentDiv.appendChild(userRegistration)
+registrationParentDiv.appendChild(passwordRegistration)
 registrationParentDiv.appendChild(loginButton)
 registrationParentDiv.appendChild(newUserHeader)
 
