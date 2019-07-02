@@ -83,6 +83,8 @@ registrationParentDiv.appendChild(registrationButton)
 
 
 
+
+
 //TODO: fix regiter word in variable names
 
 //TODO:
