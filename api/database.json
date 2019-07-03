@@ -30,31 +30,31 @@
     {
       "id": 1,
       "userId": 1,
-      "messageInput": "some comment",
+      "messageInput": "message 1",
       "timestamp": "timestamp"
     },
     {
       "id": 2,
       "userId": 1,
-      "messageInput": "some comment",
+      "messageInput": "message 2",
       "timestamp": "timestamp"
     },
     {
       "id": 3,
       "userId": 1,
-      "messageInput": "some comment",
+      "messageInput": "message 3",
       "timestamp": "timestamp"
     },
     {
       "id": 4,
       "userId": 1,
-      "messageInput": "some comment",
+      "messageInput": "message 4",
       "timestamp": "timestamp"
     },
     {
       "id": 5,
       "userId": 1,
-      "messageInput": "some comment",
+      "messageInput": "message 5",
       "timestamp": "timestamp"
     }
   ],
