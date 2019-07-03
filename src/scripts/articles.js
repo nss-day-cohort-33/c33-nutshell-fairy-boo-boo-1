@@ -22,6 +22,7 @@ synopsisInput.setAttribute("id", "synopsisInputId")
 urlInput.setAttribute("id", "urlInputId")
 submitBtn.setAttribute("id", "submitBtnId")
 
+
 //appending these children
 titleFormParent.appendChild(titleInput)
 titleFormParent.appendChild(synopsisInput)
@@ -32,14 +33,25 @@ const outPutToPage = document.querySelector("#container")
 outPutToPage.appendChild(titleFormParent)
 }
 
+function getDate() {
+let currentDate = new Date();
+let date = currentDate.getDate();
+let month = currentDate.getMonth(); //Be careful! January is 0 not 1
+let year = currentDate.getFullYear();
+let dates = new Date();
+let timestamp = dates.getTime();
+let dateString = date + "-" +(month + 1) + "-" + year + " " + timestamp;
+
+console.log(dateString)
+}
+
+
+function dataFetch(){
+
+}
 
 
 
 
 
-
-
-
-
-
-export{time, limmy, articleForm}
+export{time, limmy, articleForm, getDate }
