@@ -1,5 +1,6 @@
 import { API } from "./api.js"
 
+
 const welcomeTitle = document.querySelector("#container")
 welcomeTitle.innerHTML = "<h1>Welcome to Nutshell</h1>"
 const loginHeader = document.createElement("h4")

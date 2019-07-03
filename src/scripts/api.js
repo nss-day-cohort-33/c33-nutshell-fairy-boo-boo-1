@@ -46,6 +46,20 @@ const API = {
         body: JSON.stringify(theNewUser) //Being converted to JSON format from Javascript
         })
     },
+    //TODO: Events testing purposes, may need to be refactored
+    postEventEntries: function (theNewEvent) {
+        return fetch("http://localhost:8088/events", {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(theNewEvent) //Being converted to JSON format from Javascript
+        })
+    },
+    getEventEntries: function () {
+        return fetch("http://localhost:8088/events")  //Access the data location and return a promise object containing it
+            .then(data => data.json()) //A promise object is being converted from JSON back to regular Javascript
+    }
 }
 
 export {API}
