@@ -58,11 +58,10 @@ console.log(dateString)
 
 
 function getData(resources) {
-    console.log(resources)
     return fetch(`http://localhost:8088/${resources}`)
       .then(data => data.json())
       .then(data => {
-        console.log("data", data)
+        console.log(`${resources}`, data)
     }
 )}
 
