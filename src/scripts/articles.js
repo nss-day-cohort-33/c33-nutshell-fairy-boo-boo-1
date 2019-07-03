@@ -1,48 +1,43 @@
 
-let time = console.log("is this working")
-
-let limmy = console.log("I wanna fuckn party")
-
 function articleForm(){
-const articleHeader = document.querySelector("#container")
-articleHeader.innerHTML = "<h1>Articles<h1>"
+    const articleContainer = document.querySelector("#container2")
+    articleContainer.innerHTML = "<h1>Articles<h1>"
 
-//variables for articles page
-const titleFormParent = document.createElement("div")
-const titleInput = document.createElement("input")
-const synopsisInput = document.createElement("input")
-const urlInput = document.createElement("input")
-const submitBtn = document.createElement("button")
-submitBtn.textContent = "Submit"
-
-
-titleFormParent.setAttribute("id", "titleFormParentId")
-titleInput.setAttribute("id", "titleInputId")
-synopsisInput.setAttribute("id", "synopsisInputId")
-urlInput.setAttribute("id", "urlInputId")
-submitBtn.setAttribute("id", "submitBtnId")
+    //variables for articles page
+    const titleFormParent = document.createElement("div")
+    const titleInput = document.createElement("input")
+    const synopsisInput = document.createElement("input")
+    const urlInput = document.createElement("input")
+    const submitBtn = document.createElement("button")
+    submitBtn.textContent = "Submit"
 
 
-//appending these children
-titleFormParent.appendChild(titleInput)
-titleFormParent.appendChild(synopsisInput)
-titleFormParent.appendChild(urlInput)
-titleFormParent.appendChild(submitBtn)
+    titleFormParent.setAttribute("id", "titleFormParentId")
+    titleInput.setAttribute("id", "titleInputId")
+    synopsisInput.setAttribute("id", "synopsisInputId")
+    urlInput.setAttribute("id", "urlInputId")
+    submitBtn.setAttribute("id", "submitBtnId")
 
-const outPutToPage = document.querySelector("#container")
-outPutToPage.appendChild(titleFormParent)
+
+    //appending these children
+    titleFormParent.appendChild(titleInput)
+    titleFormParent.appendChild(synopsisInput)
+    titleFormParent.appendChild(urlInput)
+    titleFormParent.appendChild(submitBtn)
+
+    articleContainer.appendChild(titleFormParent)
 }
 
 function getDate() {
-let currentDate = new Date();
-let date = currentDate.getDate();
-let month = currentDate.getMonth(); //Be careful! January is 0 not 1
-let year = currentDate.getFullYear();
-let dates = new Date();
-let timestamp = dates.getTime();
-let dateString = date + "-" +(month + 1) + "-" + year + " " + timestamp;
+    let currentDate = new Date();
+    let date = currentDate.getDate();
+    let month = currentDate.getMonth(); //Be careful! January is 0 not 1
+    let year = currentDate.getFullYear();
+    let dates = new Date();
+    let timestamp = dates.getTime();
+    let dateString = date + "-" +(month + 1) + "-" + year + " " + timestamp;
 
-console.log(dateString)
+    console.log(dateString)
 }
 
 
@@ -57,11 +52,17 @@ console.log(dateString)
 // const resources = "users"
 
 
-function getData(resources) {
+function getArticleData(resources) {
     return fetch(`http://localhost:8088/${resources}`)
       .then(data => data.json())
       .then(data => {
         console.log(`${resources}`, data)
+        const placeToPutOutPut = document.querySelector("#container3")
+        console.log(placeToPutOutPut)
+        data.forEach(article => {
+            document.querySelector("#container2").innerHTML += `<div>${article.id} 
+            ${article.title} ${article.synopsis} <a>${article.URL}</a> ${article.timestamp} </div>`
+        });
     }
 )}
 
@@ -69,5 +70,4 @@ function getData(resources) {
 
 
 
-
-export{time, limmy, articleForm, getDate, getData}
+export{articleForm, getDate, getArticleData}

@@ -1,7 +1,6 @@
-//import "./welcome.js"
+import "./welcome.js"
 //import "./articles.js"
-import { articleForm, getDate, getData} from "./articles.js";
-import { get } from "https";
+import { articleForm, getDate, getArticleData} from "./articles.js";
 console.log("Your Webpack application is set up and ready to go. Please start writing code.")
 
 articleForm()
@@ -13,11 +12,11 @@ const articles = "articles"
 const friends = "friends"
 
 
-getData(fakeName)
-getData(messages)
-getData(events)
-getData(articles)
-getData(friends)
+// getData(fakeName)
+// getData(messages)
+// getData(events)
+getArticleData("articles")
+// getData(friends)
 //console.log(getData())
 
 // console.log(welcomeTitle);
