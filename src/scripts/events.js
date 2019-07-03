@@ -17,16 +17,16 @@ const eventsNameInput = document.createElement("input")
 const eventsDateInput = document.createElement("input")
 const eventsLocationInput = document.createElement("input")
 const eventsSaveButton = document.createElement("button")
-const eventsDeleteButton = document.createElement("button")
+// const eventsDeleteButton = document.createElement("button")
 eventsSaveButton.textContent = "save"
-eventsDeleteButton.textContent = "delete"
+// eventsDeleteButton.textContent = "delete"
 
 eventsParentDiv.setAttribute("id", "eventsParentDivId")
 eventsNameInput.setAttribute("id", "eventsNameInputId")
 eventsDateInput.setAttribute("id", "eventsDateInputId")
 eventsLocationInput.setAttribute("id", "eventsLocationInputId")
 eventsSaveButton.setAttribute("id", "eventsSaveButtonId")
-eventsDeleteButton.setAttribute("id", "eventsDeleteButtonId")
+// eventsDeleteButton.setAttribute("id", "eventsDeleteButtonId")
 
 eventsNameInput.setAttribute("placeholder", "event name")
 eventsDateInput.setAttribute("placeholder", "date")
@@ -62,6 +62,7 @@ eventsSaveButton.addEventListener("click", () => {
             "date": valueEventDate
                 }
 
+
 API.postEventEntries(eventItem)
 .then(API.getEventEntries)
 .then(entireObject => {
@@ -72,13 +73,16 @@ API.postEventEntries(eventItem)
             `<h1>User Id:${entireObject[i].userId}</h1>
                <h3>Title:${entireObject[i].title}</h3>
                <h3>Location:${entireObject[i].location}</h3>
-               <h3>Date: ${entireObject[i].date}</h3>`
+               <h3>Date: ${entireObject[i].date}</h3>
+               <button id="deleteButtonEvents">Delete Event</button>`
 
           putitHere.appendChild(outerdiv);
         }
   });
 })
 }
+
+
 
 // const DOMMethods = Object.create(
 
