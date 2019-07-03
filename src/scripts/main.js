@@ -5,7 +5,9 @@ console.log("Your Webpack application is set up and ready to go. Please start wr
 
 articleForm()
 getDate()
-getData()
+const fakeName = "users"
+
+getData(fakeName)
 //console.log(getData())
 
 // console.log(welcomeTitle);

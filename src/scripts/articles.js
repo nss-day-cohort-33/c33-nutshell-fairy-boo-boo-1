@@ -54,13 +54,17 @@ console.log(dateString)
 //     return fetch(url)
 //     .then( data => data.json() )
 //   }
-function getData() {
-    return fetch("http://localhost:8088/users")
+// const resources = "users"
+
+
+function getData(resources) {
+    console.log(resources)
+    return fetch(`http://localhost:8088/${resources}`)
       .then(data => data.json())
       .then(data => {
         console.log("data", data)
     }
-      )}
+)}
 
 
 
