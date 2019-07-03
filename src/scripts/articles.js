@@ -46,12 +46,25 @@ console.log(dateString)
 }
 
 
-function dataFetch(){
+// function getData(resource, queryParams) {
+//     let url = `http://localhost:8080/${resource}`
+//     if (queryParams) {
+//       url += `?${queryParams}`
+//     }
+//     return fetch(url)
+//     .then( data => data.json() )
+//   }
+function getData() {
+    return fetch("http://localhost:8088/users")
+      .then(data => data.json())
+      .then(data => {
+        console.log("data", data)
+    }
+      )}
 
-}
 
 
 
 
 
-export{time, limmy, articleForm, getDate }
+export{time, limmy, articleForm, getDate, getData}
