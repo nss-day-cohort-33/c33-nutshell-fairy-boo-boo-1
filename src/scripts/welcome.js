@@ -3,45 +3,45 @@ import { API } from "./api.js"
 const welcomeTitle = document.querySelector("#container")
 welcomeTitle.innerHTML = "<h2>Welcome to Nutshell</h2>"
 
-//Creating Elements for Registration Login
-const registrationParentDiv = document.createElement("div")
-const passwordRegistration = document.createElement("input")
-const userRegistration = document.createElement("input")
+//Creating Elements for login Login
+const loginParentDiv = document.createElement("div")
+const passwordlogin = document.createElement("input")
+const userlogin = document.createElement("input")
 const registerButton = document.createElement("button")
 registerButton.textContent = "login"
 
-//Setting ID's for Registration Elements
-registrationParentDiv.setAttribute("id", "registrationParentDivId")
-passwordRegistration.setAttribute("id", "registrationpasswordId")
-userRegistration.setAttribute("id", "registrationUserId")
+//Setting ID's for login Elements
+loginParentDiv.setAttribute("id", "loginParentDivId")
+passwordlogin.setAttribute("id", "loginpasswordId")
+userlogin.setAttribute("id", "loginUserId")
 registerButton.setAttribute("id", "registerButtonId")
 
 //Attaching Elements to the DOM
-registrationParentDiv.appendChild(passwordRegistration)
-registrationParentDiv.appendChild(userRegistration)
-registrationParentDiv.appendChild(registerButton)
+loginParentDiv.appendChild(passwordlogin)
+loginParentDiv.appendChild(userlogin)
+loginParentDiv.appendChild(registerButton)
 
 //Putting it in the DOM
 const outputLocation = document.querySelector("#container")
-outputLocation.appendChild(registrationParentDiv)
+outputLocation.appendChild(loginParentDiv)
 
 //Adding event listener to register button
 registerButton.addEventListener("click", ()=> {
     //TODO: check to see if the user exists in the database
     //if the user exists, log them in. If user doesn't exist offer the the chance to /////register and remove login button and replace with register button.
     //need event listener on a new register button.
-    const valueRegistrationpassword = document.getElementById("registrationpasswordId").value
-    const valueRegistrationUser = document.getElementById("registrationUserId").value
+    const valueloginpassword = document.getElementById("loginpasswordId").value
+    const valueloginUser = document.getElementById("loginUserId").value
     const oneUser = {
-        username: `${valueRegistrationUser}`,
-        password: `${valueRegistrationpassword}`
+        username: `${valueloginUser}`,
+        password: `${valueloginpassword}`
     }
     API.postJournalEntries(oneUser).then(data => data.json()).then(id =>
         console.log("id", id))
-    sessionStorage.setItem("password", valueRegistrationpassword)
-    sessionStorage.setItem("username", valueRegistrationUser)
-    console.log(valueRegistrationpassword)
-    console.log(valueRegistrationUser)
+    sessionStorage.setItem("password", valueloginpassword)
+    sessionStorage.setItem("username", valueloginUser)
+    console.log(valueloginpassword)
+    console.log(valueloginUser)
 })
 
 //TODO: fix regiter word in variable names
