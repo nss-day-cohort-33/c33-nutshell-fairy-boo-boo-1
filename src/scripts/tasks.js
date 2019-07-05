@@ -25,30 +25,41 @@ import { API } from "./api";
 // { "id": 1, "userId": 3, "task": "Take out garbage" }
 
 function nut_taskRelated() {
+  let activeUserid = 17; //TODO: Need to update this with actual value when ready
   let placeonDOMtree = document.querySelector("#joytest"); //Where in the DOM do you want to place this?
   let enterNewTaskBtn = document.createElement("button"); //Create <enter a new task> button
   enterNewTaskBtn.textContent = "Enter a New Task"; //Label the button
   enterNewTaskBtn.setAttribute("id", "enterNewTaskBtnId"); //Give the button a new id
-  placeonDOMtree.appendChild(enterNewTaskBtn);
+  placeonDOMtree.appendChild(enterNewTaskBtn)
   enterNewTaskBtn.addEventListener("click", () => {// What to do when the <Enter New Task> button is clicked
     document.querySelector("#enterNewTaskBtnId").style.display = "none";//Hide the <Enter New Task> button
-    let placetoPutForm = document.createElement("div") //Create a new div element to place this form.
+    let placetoPutTaskStuff = document.createElement("div") //Create a new div element to place this form.
     let createTaskTemplate = `
         <h3 id="headingCreateTask">Create a New Task<h3>
         <label for="nameofTask">Name of Task</label>
         <input type="text" name="nameofTaskInp" id="nameofTaskInpId" placeholder="Enter task here" required>
         <label for="expectCompDate">Expected Completion Date</label>
         <input type="date" name="expectCompDateInp" id="expectCompDateInpId" required>`
-    placetoPutForm.innerHTML = createTaskTemplate //Feed the createTaskTemplate to the div
-    placeonDOMtree.appendChild(placetoPutForm) //Place the form on the DOM
-    let saveNewTaskBtn = document.createElement("button")
+    placetoPutTaskStuff.innerHTML = createTaskTemplate //Feed the createTaskTemplate to the div
+    placeonDOMtree.appendChild(placetoPutTaskStuff) //Place the form on the DOM
+    let saveNewTaskBtn = document.createElement("button") //Creating a <Save> button for saving a new task
     saveNewTaskBtn.textContent = "Save This Task"
     saveNewTaskBtn.setAttribute("id", "saveNewTaskBtnId")
     placeonDOMtree.appendChild(saveNewTaskBtn)
     saveNewTaskBtn.addEventListener("click", () => {
-      document.querySelector("#saveNewTaskBtnId").style.display = "none";//Hide the <Save New Task> button
       const valueNameofTask = document.querySelector("#nameofTaskInpId").value
       const valueTaskCompletionDate = document.querySelector("#expectCompDateInpId").value
+      let theNewlyCreatedTask = {
+        "userId": activeUserid,
+        "taskName": valueNameofTask,
+        "completionDate": valueTaskCompletionDate,
+        "completedTask": true, //TODO:  Replace with accurate value
+        "taskInput": "date???" //TODO:  Need to find out what this field is!
+      }
+      placetoPutTaskStuff.innerHTML=""; //Clear the <Enter the New Task Form> in the DOM
+      document.querySelector("#saveNewTaskBtnId").style.display = "none"; //Hide the <Save New Task> button
+      document.querySelector("#enterNewTaskBtnId").style.display = "block"; //Bring back the <Enter New Task> button
+      // API.addtoDatabase("tasks", theNewlyCreatedTask).then(API.getfromDatabase("tasks").then(data => {})
       console.log (valueNameofTask, valueTaskCompletionDate)
       // API.addtoDatabase("tasks", )
     })
@@ -57,6 +68,14 @@ function nut_taskRelated() {
 
 export { nut_taskRelated };
 
+// data => { //From Jake's stuff to refactor for tasks
+//   console.log(`${resources}`, data)
+//   const placeToPutOutPut = document.querySelector("#container3")
+//   console.log(placeToPutOutPut)
+//   data.forEach(article => {
+//       document.querySelector("#container2").innerHTML += `<div>${article.id}
+//       ${article.title} ${article.synopsis} <a>${article.URL}</a> ${article.timestamp} </div>`
+//   });
 // const buildHTML = Object.create({
 
 //   buildUpDOMElement: function(singleJournalEntry) {
