@@ -1,4 +1,5 @@
 import { API } from "./api.js"
+import {createChats, getData} from "./chats.js"
 
 
 const welcomeTitle = document.querySelector("#container")
@@ -49,15 +50,15 @@ loginButton.addEventListener("click", ()=> {
     const valueRegistrationpassword = document.getElementById("registrationpasswordId").value
     const valueRegistrationUser = document.getElementById("registrationUserId").value
     const oneUser = {
-        username: `${valueRegistrationUser}`,
-        password: `${valueRegistrationpassword}`
+        username: `${valueloginUser}`,
+        password: `${valueloginpassword}`
     }
-    API.postJournalEntries(oneUser).then(data => data.json()).then(id =>
+    API.addtoDatabase("users", oneUser).then(data => data.json()).then(id =>
         console.log("id", id))
-    sessionStorage.setItem("password", valueRegistrationpassword)
-    sessionStorage.setItem("username", valueRegistrationUser)
-    console.log(valueRegistrationpassword)
-    console.log(valueRegistrationUser)
+    sessionStorage.setItem("password", valueloginpassword)
+    sessionStorage.setItem("username", valueloginUser)
+    console.log(valueloginpassword)
+    console.log(valueloginUser)
 })
 
 newUserHeader.addEventListener("click", ()=> {
@@ -67,12 +68,49 @@ document.querySelector("#loginHeaderId").textContent = "Please register Below"
 document.querySelector("#registerUserLinkId").style.display = "none"
 registrationParentDiv.appendChild(registrationButton)
 })
+createChats(); //for testing
+getData("messages"); //misty's stuff
 
 
 
 
 
 
+
+
+
+
+
+
+
+//**************************************************
+//TODO: TESING MESSAGE INPUT delete when done --create message container
+// const messageTitle = document.querySelector("#test"); //TODO: refactor to match page location
+// messageTitle.innerHTML = "<h1>Messages</h1>";
+
+// // create message textarea element
+// const messageInputParentDiv = document.createElement("div");
+// const messageInput = document.createElement("textarea");
+// const editMessageButton = document.createElement("button");
+// editMessageButton.textContent = "edit message";
+
+// //set attributes for message input
+// messageInputParentDiv.setAttribute("id", "messageInputParentDiv");
+// messageInput.setAttribute("placeholder", "Say What's Up...");
+// messageInput.setAttribute("cols", "100");
+// messageInput.setAttribute("rows", "5");
+// messageInput.setAttribute("id", "messageInputId");
+// editMessageButton.setAttribute("id", "editMessageButtonId");
+
+// //Add message input to the DOM with appendChild
+// const messageLocation = document.querySelector("#test");
+// messageLocation.appendChild(messageInputParentDiv);
+// messageLocation.appendChild(messageInput);
+// messageLocation.appendChild(editMessageButton);
+
+// TODO: delete above
+
+// ******************************************
 
 
 

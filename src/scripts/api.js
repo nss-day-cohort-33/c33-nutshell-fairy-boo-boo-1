@@ -33,17 +33,17 @@
 // }
 
 const API = {
-    getJournalEntries: function () {
-        return fetch("http://localhost:8088/users")  //Access the data location and return a promise object containing it
+    getfromDatabase: function (whichResource) {
+        return fetch(`http://localhost:8088/${whichResource}`)  //Access the data location and return a promise object containing it
             .then(data => data.json()) //A promise object is being converted from JSON back to regular Javascript
     },
-    postJournalEntries: function (theNewUser) {
-        return fetch("http://localhost:8088/users", {
+    addtoDatabase: function (whichResource, oneItem) {
+        return fetch(`http://localhost:8088/${whichResource}`, {
         method: "POST",
         headers:{
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(theNewUser) //Being converted to JSON format from Javascript
+        body: JSON.stringify(oneItem) //Being converted to JSON format from Javascript
         })
     },
     //TODO: Events testing purposes, may need to be refactored

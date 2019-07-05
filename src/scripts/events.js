@@ -9,7 +9,7 @@ import { API } from "./api";
 // Then a form should be presented to the user in which the following properties of the event can be provided
 
 function eventsjs () {
-const eventsTitle = document.querySelector("#container")
+const eventsTitle = document.querySelector("#karlaTest")
 eventsTitle.innerHTML = "<h1>Events</h1>"
 
 const eventsParentDiv = document.createElement("div")
