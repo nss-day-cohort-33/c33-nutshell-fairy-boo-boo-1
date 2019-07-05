@@ -9,39 +9,41 @@ import { API } from "./api";
 // Then a form should be presented to the user in which the following properties of the event can be provided
 
 function eventsjs () {
-const eventsTitle = document.querySelector("#karlaTest")
-eventsTitle.innerHTML = "<h1>Events</h1>"
+const eventsOutput = document.querySelector("#karlaTest") //location in index.html file
+eventsOutput.innerHTML = "<h1>Events</h1>" //header for my events section
 
+//created my elements
 const eventsParentDiv = document.createElement("div")
 const eventsNameInput = document.createElement("input")
 const eventsDateInput = document.createElement("input")
 const eventsLocationInput = document.createElement("input")
 const eventsSaveButton = document.createElement("button")
-// const eventsDeleteButton = document.createElement("button")
+
+//created my events save button
 eventsSaveButton.textContent = "save"
-// eventsDeleteButton.textContent = "delete"
 
-
+//adding ID's to each element
 eventsParentDiv.setAttribute("id", "eventsParentDivId")
 eventsNameInput.setAttribute("id", "eventsNameInputId")
 eventsDateInput.setAttribute("id", "eventsDateInputId")
 eventsLocationInput.setAttribute("id", "eventsLocationInputId")
 eventsSaveButton.setAttribute("id", "eventsSaveButtonId")
-// eventsDeleteButton.setAttribute("id", "eventsDeleteButtonId")
 
+//added placeholder to input text boxes
 eventsNameInput.setAttribute("placeholder", "event name")
 eventsDateInput.setAttribute("placeholder", "date")
 eventsLocationInput.setAttribute("placeholder", "location")
 
+//attaching each item to it's parent DIV
+eventsParentDiv.appendChild(eventsNameInput)
+eventsParentDiv.appendChild(eventsDateInput)
+eventsParentDiv.appendChild(eventsLocationInput)
+eventsParentDiv.appendChild(eventsSaveButton)
 
-//will have to change messageLocation to eventsParenDiv
-const messageLocation = document.querySelector("#karlaTest");
-messageLocation.appendChild(eventsNameInput)
-messageLocation.appendChild(eventsDateInput)
-messageLocation.appendChild(eventsLocationInput)
-messageLocation.appendChild(eventsSaveButton)
-// messageLocation.appendChild(eventsDeleteButton)
+//attached it to the DOM
+eventsOutput.appendChild(eventsParentDiv)
 
+//Save Button event listener
 eventsSaveButton.addEventListener("click", () => {
     const valueEventName = document.getElementById ("eventsNameInputId").value
     const valueEventDate = document.getElementById ("eventsDateInputId").value
@@ -57,6 +59,7 @@ eventsSaveButton.addEventListener("click", () => {
 API.postEventEntries(eventItem)
 .then(API.getEventEntries)
 .then(entireObject => {
+    console.log("entireObject", entireObject)
     let putitHere = document.querySelector("#karlaTest");
     let outerdiv = document.createElement("div")
     outerdiv.setAttribute("id", "savedObjectId")
@@ -67,25 +70,55 @@ API.postEventEntries(eventItem)
                <p>Title:${entireObject[i].title}</p>
                <p>Location:${entireObject[i].location}</p>
                <p>Date: ${entireObject[i].date}</p>
-               <button id="deleteButtonEvents">Delete Event</button>
-               <button id="editButtonEvents">Edit Event</button>
             `
           putitHere.appendChild(outerdiv);
+          const eventsDeleteButton = document.createElement("button")
+          console.log("Object Id", entireObject[i].id)
+          eventsDeleteButton.setAttribute("id", `deleteButtonEvents-${entireObject[i].id}`)
+          eventsDeleteButton.textContent = "Delete Event"
 
-const myNewDeleteButton = document.querySelector("#deleteButtonEvents");
-// const thing = document.querySelector("#savedObjectId")
-let art = document.getElementById("karlaTest")
-let thing = art.getElementsByTagName("div")
-myNewDeleteButton.addEventListener("click", () => {
-    console.log("hey");
-    // thing.parentElement.remove();
-    thing.innerHTML = ""
-})
+          eventsDeleteButton.addEventListener("click", () => {
+              console.log("entireObject", entireObject, "entireObject id", entireObject[i].id)
+            API.deleteEventEntry(entireObject[i].id)
+            // .then(API.getEventEntries)
+            // .then(eventsData => { //the second loop starts here
+            //     for (let i = 0; i < eventsData.length; i++) {
+            //         outerdiv.innerHTML =
+            //         `
+            //            <p>User Id:${eventsData[i].userId}</p>
+            //            <p>Title:${eventsData[i].title}</p>
+            //            <p>Location:${eventsData[i].location}</p>
+            //            <p>Date: ${eventsData[i].date}</p>
+            //         `
+            //       putitHere.appendChild(outerdiv);
+            //       const eventsDeleteButton = document.createElement("button")
+            //       console.log("Object Id", eventsData[i].id)
+            //       eventsDeleteButton.setAttribute("id", `deleteButtonEvents-${eventsData[i].id}`)
+            //       eventsDeleteButton.textContent = "Delete Event"
+
+            //       eventsDeleteButton.addEventListener("click", () => {
+            //           console.log("entireObject", eventsData, "entireObject id", eventsData[i].id)
+            //         API.deleteEventEntry(eventsData[i].id)
+            //         .then(API.getEventEntries)
+            // })
+
+        //   console.log("DELETE BUTTON CLICKED")
+          });
+            outerdiv.appendChild(eventsDeleteButton)
+
+
+
         }
   })
 
-
 })
+
+
+
+
+
+
+
 
 // function myFunction() {
 //     var x = document.getElementById("item1").nextSibling.innerHTML;
@@ -101,6 +134,8 @@ myNewDeleteButton.addEventListener("click", () => {
 //     //     DOMMethods.addThisToTheDOM(parsedEntries);
 //     //   });
 }
+
+
 
 
 
@@ -239,3 +274,15 @@ export { eventsjs }
 
 //1.created dummy data in database.json file
 //2.create fetch calls
+
+
+
+// const myNewDeleteButton = document.querySelector("#deleteButtonEvents");
+// // const thing = document.querySelector("#savedObjectId")
+// let art = document.getElementById("karlaTest")
+// let thing = art.getElementsByTagName("div")
+// myNewDeleteButton.addEventListener("click", () => {
+//     console.log("hey");
+//     // thing.parentElement.remove();
+//     thing.innerHTML = ""
+// })
