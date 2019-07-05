@@ -39,7 +39,7 @@ registrationParentDiv.appendChild(newUserHeader)
 
 //Putting it in the DOM
 const outputLocation = document.querySelector("#container")
-outputLocation.appendChild(loginParentDiv)
+outputLocation.appendChild(registrationParentDiv)
 
 //Adding event listener to login button
 loginButton.addEventListener("click", ()=> {
