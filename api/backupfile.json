@@ -30,31 +30,31 @@
     {
       "id": 1,
       "userId": 1,
-      "messageInput": "message 1",
+      "messageInput": "some comment",
       "timestamp": "timestamp"
     },
     {
       "id": 2,
       "userId": 1,
-      "messageInput": "message 2",
+      "messageInput": "some comment",
       "timestamp": "timestamp"
     },
     {
       "id": 3,
       "userId": 1,
-      "messageInput": "message 3",
+      "messageInput": "some comment",
       "timestamp": "timestamp"
     },
     {
       "id": 4,
       "userId": 1,
-      "messageInput": "message 4",
+      "messageInput": "some comment",
       "timestamp": "timestamp"
     },
     {
       "id": 5,
       "userId": 1,
-      "messageInput": "message 5",
+      "messageInput": "some comment",
       "timestamp": "timestamp"
     }
   ],
@@ -177,14 +177,6 @@
       "completionDate": "Nashville, TN",
       "completedTask": "date",
       "taskInput": "date"
-    },
-    {
-      "userId": 17,
-      "taskName": "Get groceries",
-      "completionDate": "2019-07-05",
-      "completedTask": true,
-      "taskInput": "date???",
-      "id": 6
     }
   ],
   "friends": [
