@@ -36,7 +36,7 @@ registerButton.addEventListener("click", ()=> {
         username: `${valueloginUser}`,
         password: `${valueloginpassword}`
     }
-    API.postJournalEntries(oneUser).then(data => data.json()).then(id =>
+    API.addtoDatabase("users", oneUser).then(data => data.json()).then(id =>
         console.log("id", id))
     sessionStorage.setItem("password", valueloginpassword)
     sessionStorage.setItem("username", valueloginUser)

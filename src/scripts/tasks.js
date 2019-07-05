@@ -1,3 +1,5 @@
+import { API } from "./api";
+
 // Instructions for this section:
 
 // As a user who needs to track tasks, I should be able to enter in a task name, and an expected completion date, and be able to mark them as complete
@@ -45,6 +47,10 @@ function nut_taskRelated() {
     placeonDOMtree.appendChild(saveNewTaskBtn)
     saveNewTaskBtn.addEventListener("click", () => {
       document.querySelector("#saveNewTaskBtnId").style.display = "none";//Hide the <Save New Task> button
+      const valueNameofTask = document.querySelector("#nameofTaskInpId").value
+      const valueTaskCompletionDate = document.querySelector("#expectCompDateInpId").value
+      console.log (valueNameofTask, valueTaskCompletionDate)
+      // API.addtoDatabase("tasks", )
     })
   });
 }
