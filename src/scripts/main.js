@@ -1,4 +1,6 @@
 import "./welcome.js"
+import { eventsjs } from "./events.js"
+
 //import "./articles.js"
 import { articleForm, getDate, getArticleData} from "./articles.js"
 import { nut_taskRelated } from "./tasks.js" //Import this for testing the tasks portion--joy
@@ -23,4 +25,7 @@ const friends = "friends"
 getArticleData("articles")
 // getData(friends)
 //console.log(getData())
+
+eventsjs(); //to test Karla's stuff
+
 
