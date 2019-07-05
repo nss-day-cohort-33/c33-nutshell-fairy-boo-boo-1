@@ -44,6 +44,7 @@ eventsParentDiv.appendChild(eventsSaveButton)
 eventsOutput.appendChild(eventsParentDiv)
 
 //Save Button event listener
+
 eventsSaveButton.addEventListener("click", () => {
     const valueEventName = document.getElementById ("eventsNameInputId").value
     const valueEventDate = document.getElementById ("eventsDateInputId").value
@@ -62,8 +63,9 @@ API.postEventEntries(eventItem)
     console.log("entireObject", entireObject)
     let putitHere = document.querySelector("#karlaTest");
     let outerdiv = document.createElement("div")
-    outerdiv.setAttribute("id", "savedObjectId")
+
         for (let i = 0; i < entireObject.length; i++) {
+            outerdiv.setAttribute("id", `div-${entireObject[i].id}`)
             outerdiv.innerHTML =
             `
                <p>User Id:${entireObject[i].userId}</p>
@@ -74,35 +76,20 @@ API.postEventEntries(eventItem)
           putitHere.appendChild(outerdiv);
           const eventsDeleteButton = document.createElement("button")
           console.log("Object Id", entireObject[i].id)
-          eventsDeleteButton.setAttribute("id", `deleteButtonEvents-${entireObject[i].id}`)
+          eventsDeleteButton.setAttribute("id", `${entireObject[i].id}`)
           eventsDeleteButton.textContent = "Delete Event"
 
           eventsDeleteButton.addEventListener("click", () => {
-              console.log("entireObject", entireObject, "entireObject id", entireObject[i].id)
+              let idOfItemToBeDeleted = event.target.id;
+              let divToBeDeleted = document.querySelector(`#div-${idOfItemToBeDeleted}`)
+              divToBeDeleted.innerHTML = ""
+            //   console.log("DIV DELETED", divToBeDeleted)
+            //   console.log("entireObject", entireObject, "entireObject id", entireObject[i].id)
             API.deleteEventEntry(entireObject[i].id)
-            // .then(API.getEventEntries)
-            // .then(eventsData => { //the second loop starts here
-            //     for (let i = 0; i < eventsData.length; i++) {
-            //         outerdiv.innerHTML =
-            //         `
-            //            <p>User Id:${eventsData[i].userId}</p>
-            //            <p>Title:${eventsData[i].title}</p>
-            //            <p>Location:${eventsData[i].location}</p>
-            //            <p>Date: ${eventsData[i].date}</p>
-            //         `
-            //       putitHere.appendChild(outerdiv);
-            //       const eventsDeleteButton = document.createElement("button")
-            //       console.log("Object Id", eventsData[i].id)
-            //       eventsDeleteButton.setAttribute("id", `deleteButtonEvents-${eventsData[i].id}`)
-            //       eventsDeleteButton.textContent = "Delete Event"
+            .then(API.getEventEntries)
+            .then(eventsData => { //the second loop starts here
+            })
 
-            //       eventsDeleteButton.addEventListener("click", () => {
-            //           console.log("entireObject", eventsData, "entireObject id", eventsData[i].id)
-            //         API.deleteEventEntry(eventsData[i].id)
-            //         .then(API.getEventEntries)
-            // })
-
-        //   console.log("DELETE BUTTON CLICKED")
           });
             outerdiv.appendChild(eventsDeleteButton)
 

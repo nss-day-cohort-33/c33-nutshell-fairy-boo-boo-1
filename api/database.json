@@ -170,34 +170,6 @@
       "location": "nashville",
       "date": "july",
       "id": 10
-    },
-    {
-      "userId": 1,
-      "title": "Entire Object",
-      "location": "Franklin",
-      "date": "July something",
-      "id": 11
-    },
-    {
-      "userId": 1,
-      "title": "is",
-      "location": "working",
-      "date": "this ",
-      "id": 12
-    },
-    {
-      "userId": 1,
-      "title": "d",
-      "location": "d",
-      "date": "d",
-      "id": 13
-    },
-    {
-      "userId": 1,
-      "title": "d",
-      "location": "d",
-      "date": "d",
-      "id": 14
     }
   ],
   "tasks": [
