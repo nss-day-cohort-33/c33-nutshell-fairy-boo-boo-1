@@ -21,6 +21,7 @@ const eventsSaveButton = document.createElement("button")
 eventsSaveButton.textContent = "save"
 // eventsDeleteButton.textContent = "delete"
 
+
 eventsParentDiv.setAttribute("id", "eventsParentDivId")
 eventsNameInput.setAttribute("id", "eventsNameInputId")
 eventsDateInput.setAttribute("id", "eventsDateInputId")
@@ -34,26 +35,17 @@ eventsLocationInput.setAttribute("placeholder", "location")
 
 
 //will have to change messageLocation to eventsParenDiv
-const messageLocation = document.querySelector("#test1");
+const messageLocation = document.querySelector("#karlaTest");
 messageLocation.appendChild(eventsNameInput)
 messageLocation.appendChild(eventsDateInput)
 messageLocation.appendChild(eventsLocationInput)
 messageLocation.appendChild(eventsSaveButton)
-messageLocation.appendChild(eventsDeleteButton)
+// messageLocation.appendChild(eventsDeleteButton)
 
 eventsSaveButton.addEventListener("click", () => {
-    // const valueEventName = document.getElementById ("eventsNameInputId").value
-    // console.log("I saved it")
-    // const valueEventDate = document.getElementById ("eventsDateInputId").value
-    // console.log("I saved it again")
-    // const valueEventLocation = document.getElementById ("eventsLocationInputId").value
-    // console.log("I saved it three time")
-
-
     const valueEventName = document.getElementById ("eventsNameInputId").value
     const valueEventDate = document.getElementById ("eventsDateInputId").value
     const valueEventLocation = document.getElementById ("eventsLocationInputId").value
-
 
         const eventItem = {
             "userId": 1,
@@ -62,25 +54,79 @@ eventsSaveButton.addEventListener("click", () => {
             "date": valueEventDate
                 }
 
-
 API.postEventEntries(eventItem)
 .then(API.getEventEntries)
 .then(entireObject => {
-    let putitHere = document.querySelector("#test1");
+    let putitHere = document.querySelector("#karlaTest");
     let outerdiv = document.createElement("div")
+    outerdiv.setAttribute("id", "savedObjectId")
         for (let i = 0; i < entireObject.length; i++) {
             outerdiv.innerHTML =
-            `<h1>User Id:${entireObject[i].userId}</h1>
-               <h3>Title:${entireObject[i].title}</h3>
-               <h3>Location:${entireObject[i].location}</h3>
-               <h3>Date: ${entireObject[i].date}</h3>
-               <button id="deleteButtonEvents">Delete Event</button>`
-
+            `
+               <p>User Id:${entireObject[i].userId}</p>
+               <p>Title:${entireObject[i].title}</p>
+               <p>Location:${entireObject[i].location}</p>
+               <p>Date: ${entireObject[i].date}</p>
+               <button id="deleteButtonEvents">Delete Event</button>
+               <button id="editButtonEvents">Edit Event</button>
+            `
           putitHere.appendChild(outerdiv);
-        }
-  });
+
+const myNewDeleteButton = document.querySelector("#deleteButtonEvents");
+// const thing = document.querySelector("#savedObjectId")
+let art = document.getElementById("karlaTest")
+let thing = art.getElementsByTagName("div")
+myNewDeleteButton.addEventListener("click", () => {
+    console.log("hey");
+    // thing.parentElement.remove();
+    thing.innerHTML = ""
 })
+        }
+  })
+
+
+})
+
+// function myFunction() {
+//     var x = document.getElementById("item1").nextSibling.innerHTML;
+//     document.getElementById("demo").innerHTML = x;
+//   }
+
+
+
+
+
+// deleteBtn.addEventListener("click", () => {//Eventlistener for the delete button
+//     //   API.deleteJournalEntry(singleJournalEntry.id).then(API.getJournalEntries).then(parsedEntries => {
+//     //     DOMMethods.addThisToTheDOM(parsedEntries);
+//     //   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -88,7 +134,7 @@ API.postEventEntries(eventItem)
 
 //     {
 //       addThisToTheDOM: function(entireObject) {
-//         let putitHere = document.querySelector("#test1"); //Location for placing the HTML that was generated
+//         let putitHere = document.querySelector("#karlaTest"); //Location for placing the HTML that was generated
 //         for (let i = 0; i < entireObject.length; i++) {
 //             outerdiv.innerHTML =
 //             `<h1>User Id:${entireObject[i].userId}</h1>
