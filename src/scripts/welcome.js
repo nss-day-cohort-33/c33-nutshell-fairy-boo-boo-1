@@ -49,15 +49,15 @@ loginButton.addEventListener("click", ()=> {
     const valueRegistrationpassword = document.getElementById("registrationpasswordId").value
     const valueRegistrationUser = document.getElementById("registrationUserId").value
     const oneUser = {
-        username: `${valueRegistrationUser}`,
-        password: `${valueRegistrationpassword}`
+        username: `${valueloginUser}`,
+        password: `${valueloginpassword}`
     }
-    API.postJournalEntries(oneUser).then(data => data.json()).then(id =>
+    API.addtoDatabase("users", oneUser).then(data => data.json()).then(id =>
         console.log("id", id))
-    sessionStorage.setItem("password", valueRegistrationpassword)
-    sessionStorage.setItem("username", valueRegistrationUser)
-    console.log(valueRegistrationpassword)
-    console.log(valueRegistrationUser)
+    sessionStorage.setItem("password", valueloginpassword)
+    sessionStorage.setItem("username", valueloginUser)
+    console.log(valueloginpassword)
+    console.log(valueloginUser)
 })
 
 newUserHeader.addEventListener("click", ()=> {

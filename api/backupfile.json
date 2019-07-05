@@ -177,14 +177,6 @@
       "completionDate": "Nashville, TN",
       "completedTask": "date",
       "taskInput": "date"
-    },
-    {
-      "userId": 17,
-      "taskName": "Get groceries",
-      "completionDate": "2019-07-05",
-      "completedTask": true,
-      "taskInput": "date???",
-      "id": 6
     }
   ],
   "friends": [
