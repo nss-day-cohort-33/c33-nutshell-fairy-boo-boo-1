@@ -1,4 +1,4 @@
-import { API } from "./api";
+import { API } from "./api"
 
 // Instructions for this section:  -- Section being coded by Joy
 
@@ -59,11 +59,11 @@ function nut_taskRelated() {
       placetoPutTaskStuff.innerHTML=""; //Clear the <Enter the New Task Form> in the DOM
       document.querySelector("#saveNewTaskBtnId").style.display = "none"; //Hide the <Save New Task> button
       document.querySelector("#enterNewTaskBtnId").style.display = "block"; //Bring back the <Enter New Task> button
-      // API.addtoDatabase("tasks", theNewlyCreatedTask).then(API.getfromDatabase("tasks").then(data => {})
-      console.log (valueNameofTask, valueTaskCompletionDate)
-      // API.addtoDatabase("tasks", )
+      API.addtoDatabase("tasks", theNewlyCreatedTask).then(API.getfromDatabase("tasks")).then(data => {
+        console.log(data)
+      })
     })
-  });
+  })
 }
 
 export { nut_taskRelated };
