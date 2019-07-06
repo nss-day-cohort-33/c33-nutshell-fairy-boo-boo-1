@@ -9,38 +9,43 @@ import { API } from "./api";
 // Then a form should be presented to the user in which the following properties of the event can be provided
 
 function eventsjs () {
-const eventsTitle = document.querySelector("#karlaTest")
-eventsTitle.innerHTML = "<h1>Events</h1>"
+const eventsOutput = document.querySelector("#karlaTest") //location in index.html file
+eventsOutput.innerHTML = "<h1>Events</h1>" //header for my events section
 
+//created my elements
 const eventsParentDiv = document.createElement("div")
-const eventsNameInput = document.createElement("input")
 const eventsDateInput = document.createElement("input")
+const eventsNameInput = document.createElement("input")
 const eventsLocationInput = document.createElement("input")
 const eventsSaveButton = document.createElement("button")
-// const eventsDeleteButton = document.createElement("button")
+
+//created my events save button
 eventsSaveButton.textContent = "save"
-// eventsDeleteButton.textContent = "delete"
 
-
+//adding ID's to each element
 eventsParentDiv.setAttribute("id", "eventsParentDivId")
 eventsNameInput.setAttribute("id", "eventsNameInputId")
 eventsDateInput.setAttribute("id", "eventsDateInputId")
+eventsDateInput.setAttribute("type", "date")
 eventsLocationInput.setAttribute("id", "eventsLocationInputId")
 eventsSaveButton.setAttribute("id", "eventsSaveButtonId")
-// eventsDeleteButton.setAttribute("id", "eventsDeleteButtonId")
 
+//added placeholder to input text boxes
 eventsNameInput.setAttribute("placeholder", "event name")
 eventsDateInput.setAttribute("placeholder", "date")
+
 eventsLocationInput.setAttribute("placeholder", "location")
 
+//attaching each item to it's parent DIV
+eventsParentDiv.appendChild(eventsDateInput)
+eventsParentDiv.appendChild(eventsNameInput)
+eventsParentDiv.appendChild(eventsLocationInput)
+eventsParentDiv.appendChild(eventsSaveButton)
 
-//will have to change messageLocation to eventsParenDiv
-const messageLocation = document.querySelector("#karlaTest");
-messageLocation.appendChild(eventsNameInput)
-messageLocation.appendChild(eventsDateInput)
-messageLocation.appendChild(eventsLocationInput)
-messageLocation.appendChild(eventsSaveButton)
-// messageLocation.appendChild(eventsDeleteButton)
+//attached it to the DOM
+eventsOutput.appendChild(eventsParentDiv)
+
+//Save Button event listener
 
 eventsSaveButton.addEventListener("click", () => {
     const valueEventName = document.getElementById ("eventsNameInputId").value
@@ -57,35 +62,52 @@ eventsSaveButton.addEventListener("click", () => {
 API.postEventEntries(eventItem)
 .then(API.getEventEntries)
 .then(entireObject => {
+    console.log("entireObject", entireObject)
     let putitHere = document.querySelector("#karlaTest");
     let outerdiv = document.createElement("div")
-    outerdiv.setAttribute("id", "savedObjectId")
+
         for (let i = 0; i < entireObject.length; i++) {
+            outerdiv.setAttribute("id", `div-${entireObject[i].id}`)
             outerdiv.innerHTML =
             `
                <p>User Id:${entireObject[i].userId}</p>
                <p>Title:${entireObject[i].title}</p>
                <p>Location:${entireObject[i].location}</p>
                <p>Date: ${entireObject[i].date}</p>
-               <button id="deleteButtonEvents">Delete Event</button>
-               <button id="editButtonEvents">Edit Event</button>
             `
           putitHere.appendChild(outerdiv);
+          const eventsDeleteButton = document.createElement("button")
+          console.log("Object Id", entireObject[i].id)
+          eventsDeleteButton.setAttribute("id", `${entireObject[i].id}`)
+          eventsDeleteButton.textContent = "Delete Event"
 
-const myNewDeleteButton = document.querySelector("#deleteButtonEvents");
-// const thing = document.querySelector("#savedObjectId")
-let art = document.getElementById("karlaTest")
-let thing = art.getElementsByTagName("div")
-myNewDeleteButton.addEventListener("click", () => {
-    console.log("hey");
-    // thing.parentElement.remove();
-    thing.innerHTML = ""
-})
+          eventsDeleteButton.addEventListener("click", () => {
+              let idOfItemToBeDeleted = event.target.id;
+              let divToBeDeleted = document.querySelector(`#div-${idOfItemToBeDeleted}`)
+              divToBeDeleted.innerHTML = ""
+            //   console.log("DIV DELETED", divToBeDeleted)
+            //   console.log("entireObject", entireObject, "entireObject id", entireObject[i].id)
+            API.deleteEventEntry(entireObject[i].id)
+            // .then(API.getEventEntries)
+            // .then(eventsData => { //the second loop starts here
+            // })
+
+          });
+            outerdiv.appendChild(eventsDeleteButton)
+
+
+
         }
   })
 
-
 })
+
+
+
+// we can delete one thing but something with the append child and that's why I can't delete more...
+
+
+
 
 // function myFunction() {
 //     var x = document.getElementById("item1").nextSibling.innerHTML;
@@ -101,6 +123,8 @@ myNewDeleteButton.addEventListener("click", () => {
 //     //     DOMMethods.addThisToTheDOM(parsedEntries);
 //     //   });
 }
+
+
 
 
 
@@ -239,3 +263,35 @@ export { eventsjs }
 
 //1.created dummy data in database.json file
 //2.create fetch calls
+
+
+
+// const myNewDeleteButton = document.querySelector("#deleteButtonEvents");
+// // const thing = document.querySelector("#savedObjectId")
+// let art = document.getElementById("karlaTest")
+// let thing = art.getElementsByTagName("div")
+// myNewDeleteButton.addEventListener("click", () => {
+//     console.log("hey");
+//     // thing.parentElement.remove();
+//     thing.innerHTML = ""
+// })
+
+
+
+// const createEventTemplate =
+// `
+// <h1 id="eventsHeading">Events<h1>
+
+// <label for="eventDate">Date of Event Entry</label>
+// <input type="date" name="eventDate" id="eventsDateInputId">
+
+// <label for="eventName">Journal Entry</label>
+// <textarea type="text" name="eventName" id="eventsNameInputId"
+// placeholder="Enter task here" required>></textarea>
+
+// <label for="eventLocation">Journal Entry</label>
+// <textarea type="text" name="eventLocation" id="eventsLocationId"
+// placeholder="Enter task here" required>></textarea>
+
+
+// `
