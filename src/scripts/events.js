@@ -14,8 +14,8 @@ eventsOutput.innerHTML = "<h1>Events</h1>" //header for my events section
 
 //created my elements
 const eventsParentDiv = document.createElement("div")
-const eventsNameInput = document.createElement("input")
 const eventsDateInput = document.createElement("input")
+const eventsNameInput = document.createElement("input")
 const eventsLocationInput = document.createElement("input")
 const eventsSaveButton = document.createElement("button")
 
@@ -26,17 +26,19 @@ eventsSaveButton.textContent = "save"
 eventsParentDiv.setAttribute("id", "eventsParentDivId")
 eventsNameInput.setAttribute("id", "eventsNameInputId")
 eventsDateInput.setAttribute("id", "eventsDateInputId")
+eventsDateInput.setAttribute("type", "date")
 eventsLocationInput.setAttribute("id", "eventsLocationInputId")
 eventsSaveButton.setAttribute("id", "eventsSaveButtonId")
 
 //added placeholder to input text boxes
 eventsNameInput.setAttribute("placeholder", "event name")
 eventsDateInput.setAttribute("placeholder", "date")
+
 eventsLocationInput.setAttribute("placeholder", "location")
 
 //attaching each item to it's parent DIV
-eventsParentDiv.appendChild(eventsNameInput)
 eventsParentDiv.appendChild(eventsDateInput)
+eventsParentDiv.appendChild(eventsNameInput)
 eventsParentDiv.appendChild(eventsLocationInput)
 eventsParentDiv.appendChild(eventsSaveButton)
 
@@ -86,9 +88,9 @@ API.postEventEntries(eventItem)
             //   console.log("DIV DELETED", divToBeDeleted)
             //   console.log("entireObject", entireObject, "entireObject id", entireObject[i].id)
             API.deleteEventEntry(entireObject[i].id)
-            .then(API.getEventEntries)
-            .then(eventsData => { //the second loop starts here
-            })
+            // .then(API.getEventEntries)
+            // .then(eventsData => { //the second loop starts here
+            // })
 
           });
             outerdiv.appendChild(eventsDeleteButton)
@@ -102,7 +104,7 @@ API.postEventEntries(eventItem)
 
 
 
-
+// we can delete one thing but something with the append child and that's why I can't delete more...
 
 
 
@@ -273,3 +275,23 @@ export { eventsjs }
 //     // thing.parentElement.remove();
 //     thing.innerHTML = ""
 // })
+
+
+
+// const createEventTemplate =
+// `
+// <h1 id="eventsHeading">Events<h1>
+
+// <label for="eventDate">Date of Event Entry</label>
+// <input type="date" name="eventDate" id="eventsDateInputId">
+
+// <label for="eventName">Journal Entry</label>
+// <textarea type="text" name="eventName" id="eventsNameInputId"
+// placeholder="Enter task here" required>></textarea>
+
+// <label for="eventLocation">Journal Entry</label>
+// <textarea type="text" name="eventLocation" id="eventsLocationId"
+// placeholder="Enter task here" required>></textarea>
+
+
+// `
