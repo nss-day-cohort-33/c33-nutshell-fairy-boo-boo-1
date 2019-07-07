@@ -979,52 +979,60 @@
   ],
   "tasks": [
     {
-      "id": 1,
-      "userId": 1,
-      "taskName": "Task",
-      "completionDate": "Nashville, TN",
-      "completedTask": "date",
-      "taskInput": "date"
-    },
-    {
-      "id": 2,
-      "userId": 1,
-      "taskName": "Task",
-      "completionDate": "Nashville, TN",
-      "completedTask": "date",
-      "taskInput": "date"
-    },
-    {
-      "id": 3,
-      "userId": 1,
-      "taskName": "Task",
-      "completionDate": "Nashville, TN",
-      "completedTask": "date",
-      "taskInput": "date"
-    },
-    {
-      "id": 4,
-      "userId": 1,
-      "taskName": "Task",
-      "completionDate": "Nashville, TN",
-      "completedTask": "date",
-      "taskInput": "date"
-    },
-    {
-      "id": 5,
-      "userId": 1,
-      "taskName": "Task",
-      "completionDate": "Nashville, TN",
-      "completedTask": "date",
-      "taskInput": "date"
+      "userId": 17,
+      "taskName": "Sunday test 2",
+      "completionDate": "2019-07-07",
+      "completedTask": false,
+      "id": 8
     },
     {
       "userId": 17,
-      "taskName": "Get groceries",
-      "completionDate": "2019-07-05",
+      "taskName": "sunday test 3",
+      "completionDate": "2019-07-07",
+      "completedTask": false,
+      "id": 9
+    },
+    {
+      "userId": 17,
+      "taskName": "third item",
+      "completionDate": "2019-07-07",
       "completedTask": true,
-      "taskInput": "date???",
-      "id": 6
+      "id": 10
+    },
+    {
+      "userId": 17,
+      "taskName": "task 4",
+      "completionDate": "2019-07-07",
+      "completedTask": false,
+      "id": 11
+    },
+    {
+      "userId": 17,
+      "taskName": "test 5",
+      "completionDate": "2019-07-07",
+      "completedTask": false,
+      "id": 12
+    },
+    {
+      "userId": 17,
+      "taskName": "test 6",
+      "completionDate": "2019-07-08",
+      "completedTask": false,
+      "id": 13
+    },
+    {
+      "userId": 17,
+      "taskName": "item 7",
+      "completionDate": "2019-07-07",
+      "completedTask": false,
+      "id": 14
+    },
+    {
+      "userId": 17,
+      "taskName": "test this one too",
+      "completionDate": "2019-07-07",
+      "completedTask": false,
+      "id": 15
     }
   ],
   "friends": [

@@ -27,6 +27,9 @@ import { API } from "./api"
 function nut_taskRelated() {
   let activeUserid = 17; //TODO: Need to update this with actual value when ready
   let placeonDOMtree = document.querySelector("#joytest"); //Where in the DOM do you want to place this?
+  let tasksTitle = document.createElement("h2"); //Create a heading element for the Tasks section
+  tasksTitle.innerHTML = "Tasks"
+  placeonDOMtree.appendChild(tasksTitle)
   let enterNewTaskBtn = document.createElement("button"); //Create <enter a new task> button
   enterNewTaskBtn.textContent = "Enter a New Task"; //Label the button
   enterNewTaskBtn.setAttribute("id", "enterNewTaskBtnId"); //Give the button a new id
@@ -53,15 +56,33 @@ function nut_taskRelated() {
         "userId": activeUserid,
         "taskName": valueNameofTask,
         "completionDate": valueTaskCompletionDate,
-        "completedTask": true, //TODO:  Replace with accurate value
-        "taskInput": "date???" //TODO:  Need to find out what this field is!
+        "completedTask": false
       }
       placetoPutTaskStuff.innerHTML=""; //Clear the <Enter the New Task Form> in the DOM
       document.querySelector("#saveNewTaskBtnId").style.display = "none"; //Hide the <Save New Task> button
       document.querySelector("#enterNewTaskBtnId").style.display = "block"; //Bring back the <Enter New Task> button
-      API.addtoDatabase("tasks", theNewlyCreatedTask).then(API.getfromDatabase("tasks")).then(data => {
-        console.log(data)
-      })
+      API.addtoDatabase("tasks", theNewlyCreatedTask)
+      .then(() => {
+        API.getfromDatabase("tasks")
+        .then(data => {
+        console.log("Tasks data", data);
+        let listoftasksTitle = document.createElement("h3"); //Create a heading element for the list of tasks section
+        listoftasksTitle.innerHTML = "List of Tasks"
+        placeonDOMtree.appendChild(listoftasksTitle)
+        let divforTaskslist = document.createElement("div")
+        divforTaskslist.innerHTML = "" //Initialize it with nothing in it
+        let displayTaskTemplate = "" //Initialize the template for holding all the tasks as well
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].completedTask === false) {//Show only tasks that are not completed
+            displayTaskTemplate += `
+            <h3 id="headingCreateTask">Task ${i+1}<h3>
+            <label for="nameofTask">Name of Task:  ${data[i].taskName}</label>
+            <label for="expectCompDate">Expected Completion Date:  ${data[i].completionDate}</label>`
+          }
+        }
+        divforTaskslist.innerHTML = displayTaskTemplate //Fill the Div with its values
+        placeonDOMtree.appendChild(divforTaskslist) //Send it to the DOM
+      })}) //The parenthesis has to be in the right place!!
     })
   })
 }
