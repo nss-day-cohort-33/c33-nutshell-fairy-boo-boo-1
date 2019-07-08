@@ -102,109 +102,18 @@
   ],
   "events": [
     {
-      "id": 1,
       "userId": 1,
-      "title": "This is the title",
-      "location": "Nashville, TN",
-      "date": "date"
-    },
-    {
-      "id": 2,
-      "userId": 1,
-      "title": "This is the title",
-      "location": "Nashville, TN",
-      "date": "date"
-    },
-    {
-      "id": 3,
-      "userId": 1,
-      "title": "This is the title",
-      "location": "Nashville, TN",
-      "date": "date"
-    },
-    {
-      "id": 4,
-      "userId": 1,
-      "title": "This is the title",
-      "location": "Nashville, TN",
-      "date": "date"
-    },
-    {
-      "id": 5,
-      "userId": 1,
-      "title": "This is the title",
-      "location": "Nashville, TN",
-      "date": "date"
+      "title": "",
+      "location": "",
+      "date": "",
+      "id": 2
     },
     {
       "userId": 1,
-      "title": "NSS STUFF",
-      "location": "Nashville",
-      "date": "Today",
-      "id": 6
-    },
-    {
-      "userId": 1,
-      "title": "hi",
-      "location": "heeeey",
-      "date": "hey",
-      "id": 7
-    },
-    {
-      "userId": 1,
-      "title": "test",
-      "location": "location",
-      "date": "date",
-      "id": 8
-    },
-    {
-      "userId": 1,
-      "title": "hey",
-      "location": "ho",
-      "date": "hey",
-      "id": 9
-    },
-    {
-      "userId": 1,
-      "title": "hello",
-      "location": "nashville",
-      "date": "july",
-      "id": 10
-    },
-    {
-      "userId": 1,
-      "title": "venaslkd;jf",
-      "location": "asdfdsf",
-      "date": "2019-07-02",
-      "id": 12
-    },
-    {
-      "userId": 1,
-      "title": "venaslkd;jf",
-      "location": "asdfdsf",
-      "date": "2019-07-02",
-      "id": 13
-    },
-    {
-      "userId": 1,
-      "title": "d",
-      "location": "d",
-      "date": "2019-08-13",
-      "id": 14
-    },
-    {
-      "userId": 1,
-      "title": "d",
-      "location": "d",
-      "date": "2019-08-13",
-      "id": 15
-    },
-    {
-      "userId": 1,
-      "title": "d",
-      "location": "d",
-      "date": "2019-08-13",
-      "id": 16
+      "title": "",
+      "location": "",
+      "date": "",
+      "id": 3
     }
   ],
   "tasks": [
