@@ -24,6 +24,46 @@
       "id": 5,
       "username": "Steve 5",
       "password": "password5"
+    },
+    {
+      "username": "user0708",
+      "password": "pass0708",
+      "id": 6
+    },
+    {
+      "username": "user07081",
+      "password": "pass07081",
+      "id": 7
+    },
+    {
+      "username": "user07082",
+      "password": "pass07082",
+      "id": 8
+    },
+    {
+      "username": "user07083",
+      "password": "user07083",
+      "id": 9
+    },
+    {
+      "username": "user07083",
+      "password": "user07083",
+      "id": 10
+    },
+    {
+      "username": "user07083",
+      "password": "user07083",
+      "id": 11
+    },
+    {
+      "username": "user07083",
+      "password": "karla",
+      "id": 12
+    },
+    {
+      "username": "misty",
+      "password": "karla",
+      "id": 13
     }
   ],
   "messages": [
@@ -235,6 +275,20 @@
       "completionDate": "2019-07-08",
       "completedTask": true,
       "id": 13
+    },
+    {
+      "userId": 17,
+      "taskName": "task 0242",
+      "completionDate": "2019-07-08",
+      "completedTask": true,
+      "id": 14
+    },
+    {
+      "userId": 17,
+      "taskName": "task 0319",
+      "completionDate": "2019-07-08",
+      "completedTask": false,
+      "id": 15
     }
   ],
   "friends": [
