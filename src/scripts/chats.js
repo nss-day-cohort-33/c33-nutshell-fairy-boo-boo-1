@@ -61,19 +61,19 @@ function createNewChat() {
   newMessageBtn.textContent = "Create New Message";
 
   // set attributes for new Message
-  newMessage.setAttribute = ("type", "text");
-  newMessage.setAttribute = ("placeholder", "Enter new message");
-  newMessage.setAttribute("cols", "100");
-  newMessage.setAttribute("rows", "5");
+  newMessage.setAttribute("type", "text");
+  newMessage.setAttribute("placeholder", "Enter new message");
+  // newMessage.setAttribute("rows", "5");
+  // newMessage.setAttribute("cols", "100");
   newMessage.setAttribute("id", "newMessageId");
   newMessageBtn.setAttribute("id", "newMessageBtnId");
 
   //Attach new message input to the DOM with appendChild
+  const newMessageLocation = document.querySelector("#test2");
   newMessageLocation.appendChild(newMessage);
   newMessageLocation.appendChild(newMessageBtn);
 
   // Add new message to the DOM
-  const newMessageLocation = document.querySelector("#test2");
   newMessageLocation.appendChild(newMessageInputParentDiv);
 
   //add event listener to new message button
