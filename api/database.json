@@ -31,31 +31,31 @@
       "id": 1,
       "userId": 1,
       "messageInput": "message 1",
-      "timestamp": "timestamp"
+      "timestamp": "timestamp1"
     },
     {
       "id": 2,
       "userId": 1,
       "messageInput": "message 2",
-      "timestamp": "timestamp"
+      "timestamp": "timestamp2"
     },
     {
       "id": 3,
       "userId": 1,
       "messageInput": "message 3",
-      "timestamp": "timestamp"
+      "timestamp": "timestamp3"
     },
     {
       "id": 4,
       "userId": 1,
       "messageInput": "message 4",
-      "timestamp": "timestamp"
+      "timestamp": "timestamp4"
     },
     {
       "id": 5,
       "userId": 1,
       "messageInput": "message 5",
-      "timestamp": "timestamp"
+      "timestamp": "timestamp5"
     }
   ],
   "articles": [
