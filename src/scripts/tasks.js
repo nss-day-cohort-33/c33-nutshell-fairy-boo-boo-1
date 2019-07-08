@@ -24,6 +24,36 @@ import { API } from "./api"
 // Tasks
 // { "id": 1, "userId": 3, "task": "Take out garbage" }
 
+// function getAllTasksfromDB () {
+//   API.getfromDatabase("tasks")
+//         .then(data => {
+//         const placeonDOMtree = document.querySelector("#joytest"); //Where in the DOM do you want to place this?
+//         console.log("Tasks data", data);
+//         const listoftasksTitle = document.createElement("h3"); //Create a heading element for the list of tasks section
+//         listoftasksTitle.innerHTML = "List of Tasks"
+//         placeonDOMtree.appendChild(listoftasksTitle)
+//         const divforTaskslist = document.createElement("div")
+//         divforTaskslist.innerHTML = "" //Initialize it with nothing in it
+//         let displayTaskTemplate = "" //Initialize the template for holding all the tasks as well
+//         let taskItemNumber = 0; //Initialize the value for taskItemNumber to 0
+//         for (let i = 0; i < data.length; i++) {
+//           taskItemNumber += 1;
+//           if (data[i].completedTask === false) {//Show only tasks that are not completed
+//             displayTaskTemplate += `
+//             <h3 id="headingCreateTask">Task ${taskItemNumber}<h3>
+//             <label for="nameofTask">Name of Task:  ${data[i].taskName}</label>
+//             <label for="expectCompDate">Expected Completion Date:  ${data[i].completionDate}</label>
+//             <label for="Completed">Completed?</label>
+//             <input type="checkbox" name="completedCheckbox" id="completedCheckbox-${i}">`
+//           }
+//           else {
+//             taskItemNumber -= 1;  //Reset taskitem number backward if the Completed task value is true
+//           }
+//         }
+//         divforTaskslist.innerHTML = displayTaskTemplate //Fill the Div with its values
+//         placeonDOMtree.appendChild(divforTaskslist) //Send it to the DOM
+// }
+
 function nut_taskRelated() {
   let activeUserid = 17; //TODO: Need to update this with actual value when ready
   let placeonDOMtree = document.querySelector("#joytest"); //Where in the DOM do you want to place this?
@@ -61,7 +91,7 @@ function nut_taskRelated() {
       placetoPutTaskStuff.innerHTML=""; //Clear the <Enter the New Task Form> in the DOM
       document.querySelector("#saveNewTaskBtnId").style.display = "none"; //Hide the <Save New Task> button
       document.querySelector("#enterNewTaskBtnId").style.display = "block"; //Bring back the <Enter New Task> button
-      API.addtoDatabase("tasks", theNewlyCreatedTask)
+      API.addtoDatabase("tasks", theNewlyCreatedTask) //Post the new data to the database
       .then(() => {
         API.getfromDatabase("tasks")
         .then(data => {
@@ -76,20 +106,40 @@ function nut_taskRelated() {
         for (let i = 0; i < data.length; i++) {
           taskItemNumber += 1;
           if (data[i].completedTask === false) {//Show only tasks that are not completed
-            displayTaskTemplate += `
-            <h3 id="headingCreateTask">Task ${taskItemNumber}<h3>
-            <label for="nameofTask">Name of Task:  ${data[i].taskName}</label>
-            <label for="expectCompDate">Expected Completion Date:  ${data[i].completionDate}</label>`
+            let headingTaskNumber = document.createElement("h3")
+            let labelNameofTask = document.createElement("label")
+            let labelCompletionDate = document.createElement("label")
+            let labelCompleted = document.createElement("label")
+            let hiddenInput = document.createElement("input")
+            headingTaskNumber.innerHTML = `Task ${taskItemNumber}`
+            labelNameofTask.innerHTML = `Name of Task:  ${data[i].taskName}`
+            labelCompletionDate.innerHTML = `Expected Completion Date:  ${data[i].completionDate}`
+            labelCompleted.innerHTML = "Completed?"
+            hiddenInput.setAttribute("type", "hidden")
+            hiddenInput.setAttribute("value", `${data[i].id}`)
+            let checkboxTask = document.createElement("input")
+            checkboxTask.setAttribute("type", "checkbox")
+            checkboxTask.setAttribute("id", `completedCheckbox-${data[i].id}`)
+            checkboxTask.addEventListener("click", () => {
+              console.log("I was checked")
+            })
+            divforTaskslist.appendChild(headingTaskNumber)
+            divforTaskslist.appendChild(labelNameofTask)
+            divforTaskslist.appendChild(labelCompletionDate)
+            divforTaskslist.appendChild(labelCompleted)
+            divforTaskslist.appendChild(hiddenInput)
+            divforTaskslist.appendChild(checkboxTask) //Attach the checkbox
+            placeonDOMtree.appendChild(divforTaskslist)
           }
           else {
             taskItemNumber -= 1;  //Reset taskitem number backward if the Completed task value is true
           }
         }
-        divforTaskslist.innerHTML = displayTaskTemplate //Fill the Div with its values
-        placeonDOMtree.appendChild(divforTaskslist) //Send it to the DOM
       })}) //The parenthesis has to be in the right place!!
     })
   })
 }
+
+
 
 export { nut_taskRelated };
