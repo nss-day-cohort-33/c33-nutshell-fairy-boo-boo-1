@@ -46,6 +46,19 @@ const API = {
         body: JSON.stringify(oneItem) //Being converted to JSON format from Javascript
         })
     },
+    getSpecificItemfromDatabase: function (whichResource, whichItem) {
+        return fetch(`http://localhost:8088/${whichResource}/${whichItem}`)  //Access the data location and return a specific item
+            .then(data => data.json()) //A promise object is being converted from JSON back to regular Javascript
+    },
+    updateDatabase:  function (whichResource, theUpdatedEntry) {
+        return fetch(`http://localhost:8088/${whichResource}/${theUpdatedEntry.id}`, {
+        method: "PUT",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(theUpdatedEntry) //Being converted to JSON format from Javascript
+        })
+    },
     //TODO: Events testing purposes, may need to be refactored
     postEventEntries: function (theNewEvent) {
         return fetch("http://localhost:8088/events", {

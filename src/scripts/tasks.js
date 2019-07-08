@@ -24,35 +24,37 @@ import { API } from "./api"
 // Tasks
 // { "id": 1, "userId": 3, "task": "Take out garbage" }
 
-// function getAllTasksfromDB () {
-//   API.getfromDatabase("tasks")
-//         .then(data => {
-//         const placeonDOMtree = document.querySelector("#joytest"); //Where in the DOM do you want to place this?
-//         console.log("Tasks data", data);
-//         const listoftasksTitle = document.createElement("h3"); //Create a heading element for the list of tasks section
-//         listoftasksTitle.innerHTML = "List of Tasks"
-//         placeonDOMtree.appendChild(listoftasksTitle)
-//         const divforTaskslist = document.createElement("div")
-//         divforTaskslist.innerHTML = "" //Initialize it with nothing in it
-//         let displayTaskTemplate = "" //Initialize the template for holding all the tasks as well
-//         let taskItemNumber = 0; //Initialize the value for taskItemNumber to 0
-//         for (let i = 0; i < data.length; i++) {
-//           taskItemNumber += 1;
-//           if (data[i].completedTask === false) {//Show only tasks that are not completed
-//             displayTaskTemplate += `
-//             <h3 id="headingCreateTask">Task ${taskItemNumber}<h3>
-//             <label for="nameofTask">Name of Task:  ${data[i].taskName}</label>
-//             <label for="expectCompDate">Expected Completion Date:  ${data[i].completionDate}</label>
-//             <label for="Completed">Completed?</label>
-//             <input type="checkbox" name="completedCheckbox" id="completedCheckbox-${i}">`
-//           }
-//           else {
-//             taskItemNumber -= 1;  //Reset taskitem number backward if the Completed task value is true
-//           }
-//         }
-//         divforTaskslist.innerHTML = displayTaskTemplate //Fill the Div with its values
-//         placeonDOMtree.appendChild(divforTaskslist) //Send it to the DOM
-// }
+function getAllTasksfromDB () {
+  API.getfromDatabase("tasks")
+        .then(data => {
+        const placeonDOMtree = document.querySelector("#joytest"); //Where in the DOM do you want to place this?
+        placeonDOMtree.innerHTML = "" //Clear the DOM
+        console.log("Tasks data", data);
+        const listoftasksTitle = document.createElement("h3"); //Create a heading element for the list of tasks section
+        listoftasksTitle.innerHTML = "List of Tasks"
+        placeonDOMtree.appendChild(listoftasksTitle)
+        const divforTaskslist = document.createElement("div")
+        divforTaskslist.innerHTML = "" //Initialize it with nothing in it
+        let displayTaskTemplate = "" //Initialize the template for holding all the tasks as well
+        let taskItemNumber = 0; //Initialize the value for taskItemNumber to 0
+        for (let i = 0; i < data.length; i++) {
+          taskItemNumber += 1;
+          if (data[i].completedTask === false) {//Show only tasks that are not completed
+            displayTaskTemplate += `
+            <h3 id="headingCreateTask">Task ${taskItemNumber}<h3>
+            <label for="nameofTask">Name of Task:  ${data[i].taskName}</label>
+            <label for="expectCompDate">Expected Completion Date:  ${data[i].completionDate}</label>
+            <label for="Completed">Completed?</label>
+            <input type="checkbox" name="completedCheckbox" id="completedCheckbox-${i}">`
+          }
+          else {
+            taskItemNumber -= 1;  //Reset taskitem number backward if the Completed task value is true
+          }
+        }
+        divforTaskslist.innerHTML = displayTaskTemplate //Fill the Div with its values
+        placeonDOMtree.appendChild(divforTaskslist) //Send it to the DOM
+  })
+}
 
 function nut_taskRelated() {
   let activeUserid = 17; //TODO: Need to update this with actual value when ready
@@ -116,12 +118,26 @@ function nut_taskRelated() {
             labelCompletionDate.innerHTML = `Expected Completion Date:  ${data[i].completionDate}`
             labelCompleted.innerHTML = "Completed?"
             hiddenInput.setAttribute("type", "hidden")
+            hiddenInput.setAttribute("id", `hidden-${data[i].id}`)
             hiddenInput.setAttribute("value", `${data[i].id}`)
             let checkboxTask = document.createElement("input")
             checkboxTask.setAttribute("type", "checkbox")
-            checkboxTask.setAttribute("id", `completedCheckbox-${data[i].id}`)
-            checkboxTask.addEventListener("click", () => {
-              console.log("I was checked")
+            checkboxTask.setAttribute("id", `${data[i].id}`)
+            checkboxTask.addEventListener("click", (event) => {
+              console.log("id of target", event.target.id)
+              API.getSpecificItemfromDatabase("tasks", event.target.id)
+              .then(data => {
+                console.log("itemsentback",data)
+                const itemtoSendBack =
+                {  "userId": data.userId,
+                    "taskName": data.taskName,
+                    "completionDate": data.completionDate,
+                    "completedTask": true,
+                    "id": event.target.id
+                }
+                API.updateDatabase("tasks", itemtoSendBack)
+              })
+              .then(() => getAllTasksfromDB())
             })
             divforTaskslist.appendChild(headingTaskNumber)
             divforTaskslist.appendChild(labelNameofTask)
@@ -130,14 +146,15 @@ function nut_taskRelated() {
             divforTaskslist.appendChild(hiddenInput)
             divforTaskslist.appendChild(checkboxTask) //Attach the checkbox
             placeonDOMtree.appendChild(divforTaskslist)
-          }
+            }
           else {
             taskItemNumber -= 1;  //Reset taskitem number backward if the Completed task value is true
           }
-        }
-      })}) //The parenthesis has to be in the right place!!
+       }
+      }) //The parenthesis has to be in the right place!!
     })
   })
+})
 }
 
 
