@@ -205,38 +205,23 @@
       "location": "d",
       "date": "2019-08-13",
       "id": 16
+    },
+    {
+      "userId": 1,
+      "title": "hij",
+      "location": "kkn",
+      "date": "iji",
+      "id": 17
+    },
+    {
+      "userId": 1,
+      "title": "",
+      "location": "",
+      "date": "",
+      "id": 18
     }
   ],
-  "tasks": [
-    {
-      "userId": 17,
-      "taskName": "third item",
-      "completionDate": "2019-07-07",
-      "completedTask": true,
-      "id": 10
-    },
-    {
-      "userId": 17,
-      "taskName": "task 4",
-      "completionDate": "2019-07-07",
-      "completedTask": true,
-      "id": 11
-    },
-    {
-      "userId": 17,
-      "taskName": "test 5",
-      "completionDate": "2019-07-07",
-      "completedTask": true,
-      "id": 12
-    },
-    {
-      "userId": 17,
-      "taskName": "test 6",
-      "completionDate": "2019-07-08",
-      "completedTask": true,
-      "id": 13
-    }
-  ],
+  "tasks": [],
   "friends": [
     {
       "id": 1,
