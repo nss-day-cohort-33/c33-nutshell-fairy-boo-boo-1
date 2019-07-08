@@ -1,4 +1,4 @@
-import { API } from "./api";
+import { API } from "./api"
 
 // Instructions for this section:  -- Section being coded by Joy
 
@@ -24,9 +24,44 @@ import { API } from "./api";
 // Tasks
 // { "id": 1, "userId": 3, "task": "Take out garbage" }
 
+function getAllTasksfromDB () {
+  API.getfromDatabase("tasks")
+        .then(data => {
+        const placeonDOMtree = document.querySelector("#joytest"); //Where in the DOM do you want to place this?
+        placeonDOMtree.innerHTML = "" //Clear the DOM
+        console.log("Tasks data", data);
+        const listoftasksTitle = document.createElement("h3"); //Create a heading element for the list of tasks section
+        listoftasksTitle.innerHTML = "List of Tasks"
+        placeonDOMtree.appendChild(listoftasksTitle)
+        const divforTaskslist = document.createElement("div")
+        divforTaskslist.innerHTML = "" //Initialize it with nothing in it
+        let displayTaskTemplate = "" //Initialize the template for holding all the tasks as well
+        let taskItemNumber = 0; //Initialize the value for taskItemNumber to 0
+        for (let i = 0; i < data.length; i++) {
+          taskItemNumber += 1;
+          if (data[i].completedTask === false) {//Show only tasks that are not completed
+            displayTaskTemplate += `
+            <h3 id="headingCreateTask">Task ${taskItemNumber}<h3>
+            <label for="nameofTask">Name of Task:  ${data[i].taskName}</label>
+            <label for="expectCompDate">Expected Completion Date:  ${data[i].completionDate}</label>
+            <label for="Completed">Completed?</label>
+            <input type="checkbox" name="completedCheckbox" id="completedCheckbox-${i}">`
+          }
+          else {
+            taskItemNumber -= 1;  //Reset taskitem number backward if the Completed task value is true
+          }
+        }
+        divforTaskslist.innerHTML = displayTaskTemplate //Fill the Div with its values
+        placeonDOMtree.appendChild(divforTaskslist) //Send it to the DOM
+  })
+}
+
 function nut_taskRelated() {
   let activeUserid = 17; //TODO: Need to update this with actual value when ready
   let placeonDOMtree = document.querySelector("#joytest"); //Where in the DOM do you want to place this?
+  let tasksTitle = document.createElement("h2"); //Create a heading element for the Tasks section
+  tasksTitle.innerHTML = "Tasks"
+  placeonDOMtree.appendChild(tasksTitle)
   let enterNewTaskBtn = document.createElement("button"); //Create <enter a new task> button
   enterNewTaskBtn.textContent = "Enter a New Task"; //Label the button
   enterNewTaskBtn.setAttribute("id", "enterNewTaskBtnId"); //Give the button a new id
@@ -53,122 +88,75 @@ function nut_taskRelated() {
         "userId": activeUserid,
         "taskName": valueNameofTask,
         "completionDate": valueTaskCompletionDate,
-        "completedTask": true, //TODO:  Replace with accurate value
-        "taskInput": "date???" //TODO:  Need to find out what this field is!
+        "completedTask": false
       }
       placetoPutTaskStuff.innerHTML=""; //Clear the <Enter the New Task Form> in the DOM
       document.querySelector("#saveNewTaskBtnId").style.display = "none"; //Hide the <Save New Task> button
       document.querySelector("#enterNewTaskBtnId").style.display = "block"; //Bring back the <Enter New Task> button
-      // API.addtoDatabase("tasks", theNewlyCreatedTask).then(API.getfromDatabase("tasks").then(data => {})
-      console.log (valueNameofTask, valueTaskCompletionDate)
-      // API.addtoDatabase("tasks", )
+      API.addtoDatabase("tasks", theNewlyCreatedTask) //Post the new data to the database
+      .then(() => {
+        API.getfromDatabase("tasks")
+        .then(data => {
+        console.log("Tasks data", data);
+        let listoftasksTitle = document.createElement("h3"); //Create a heading element for the list of tasks section
+        listoftasksTitle.innerHTML = "List of Tasks"
+        placeonDOMtree.appendChild(listoftasksTitle)
+        let divforTaskslist = document.createElement("div")
+        divforTaskslist.innerHTML = "" //Initialize it with nothing in it
+        let displayTaskTemplate = "" //Initialize the template for holding all the tasks as well
+        let taskItemNumber = 0; //Initialize the value for taskItemNumber to 0
+        for (let i = 0; i < data.length; i++) {
+          taskItemNumber += 1;
+          if (data[i].completedTask === false) {//Show only tasks that are not completed
+            let headingTaskNumber = document.createElement("h3")
+            let labelNameofTask = document.createElement("label")
+            let labelCompletionDate = document.createElement("label")
+            let labelCompleted = document.createElement("label")
+            let hiddenInput = document.createElement("input")
+            headingTaskNumber.innerHTML = `Task ${taskItemNumber}`
+            labelNameofTask.innerHTML = `Name of Task:  ${data[i].taskName}`
+            labelCompletionDate.innerHTML = `Expected Completion Date:  ${data[i].completionDate}`
+            labelCompleted.innerHTML = "Completed?"
+            hiddenInput.setAttribute("type", "hidden")
+            hiddenInput.setAttribute("id", `hidden-${data[i].id}`)
+            hiddenInput.setAttribute("value", `${data[i].id}`)
+            let checkboxTask = document.createElement("input")
+            checkboxTask.setAttribute("type", "checkbox")
+            checkboxTask.setAttribute("id", `${data[i].id}`)
+            divforTaskslist.appendChild(headingTaskNumber)
+            divforTaskslist.appendChild(labelNameofTask)
+            divforTaskslist.appendChild(labelCompletionDate)
+            divforTaskslist.appendChild(labelCompleted)
+            divforTaskslist.appendChild(hiddenInput)
+            divforTaskslist.appendChild(checkboxTask) //Attach the checkbox
+            divforTaskslist.addEventListener("click", (event) => { //Event listener on parent div
+              console.log("id of target", event.target.id)
+              API.getSpecificItemfromDatabase("tasks", event.target.id)
+              .then(data => {
+                console.log("itemsentback",data)
+                const itemtoSendBack =
+                {  "userId": data.userId,
+                "taskName": data.taskName,
+                "completionDate": data.completionDate,
+                "completedTask": true,
+                "id": event.target.id
+              }
+              API.updateDatabase("tasks", itemtoSendBack)
+            })
+            .then(() => getAllTasksfromDB())
+          })
+          placeonDOMtree.appendChild(divforTaskslist)
+          }
+          else {
+            taskItemNumber -= 1;  //Reset taskitem number backward if the Completed task value is true
+          }
+       }
+      }) //The parenthesis has to be in the right place!!
     })
-  });
+  })
+})
 }
 
+
+
 export { nut_taskRelated };
-
-// data => { //From Jake's stuff to refactor for tasks
-//   console.log(`${resources}`, data)
-//   const placeToPutOutPut = document.querySelector("#container3")
-//   console.log(placeToPutOutPut)
-//   data.forEach(article => {
-//       document.querySelector("#container2").innerHTML += `<div>${article.id}
-//       ${article.title} ${article.synopsis} <a>${article.URL}</a> ${article.timestamp} </div>`
-//   });
-// const buildHTML = Object.create({
-
-//   buildUpDOMElement: function(singleJournalEntry) {
-
-//     let outerdiv = document.createElement("div")
-//     let innerdiv = document.createElement("div")
-//     outerdiv.innerHTML = `<h1>Concepts Covered:  ${ //Basic elements from database to be put into the DOM
-//       singleJournalEntry.Concepts_Covered
-//     }<h3>Date of Entry:  ${
-//       singleJournalEntry.Date_of_Entry
-//     } <h3><p>Journal Entry:  ${
-//       singleJournalEntry.Journal_Entry
-//     }<p><h3>Mood for the Day:  ${singleJournalEntry.Mood_for_the_Day}</h3>`
-//     innerdiv.setAttribute("id", `editFormContainer-${singleJournalEntry.id}`) //Location where the edit form will appear
-//     outerdiv.appendChild(innerdiv);
-//     let deleteBtn = document.createElement("button") //Create delete button
-//     let editBtn = document.createElement("button") //Create edit button
-//     deleteBtn.setAttribute("id", `delButton-${singleJournalEntry.id}`) //Setting ids on buttons to access specific buttons later
-//     editBtn.setAttribute("id", `editButton-${singleJournalEntry.id}`)
-//     deleteBtn.textContent = "delete"
-//     editBtn.textContent = "edit"
-//     deleteBtn.addEventListener("click", () => {//Eventlistener for the delete button
-//       API.deleteJournalEntry(singleJournalEntry.id).then(API.getJournalEntries).then(parsedEntries => {
-//         DOMMethods.addThisToTheDOM(parsedEntries);
-//       });
-
-//     })
-//     editBtn.addEventListener("click", () => {//Eventlistener for the edit button
-
-//       document.querySelector(`#delButton-${singleJournalEntry.id}`).style.display = "none" //Remove both delete and edit buttons
-//       document.querySelector(`#editButton-${singleJournalEntry.id}`).style.display = "none"
-//       let editFormforThisEntry = createEditForm(singleJournalEntry)
-//       let innerDivId = innerdiv.id //Each DOM Component will have its own innerDivId (location for editing)
-//       setupEditFormandFunctionality(innerDivId, editFormforThisEntry, singleJournalEntry)
-
-//     })
-//     outerdiv.appendChild(deleteBtn) //Attach the buttons to the Outer Div element
-//     outerdiv.appendChild(editBtn)
-//     return outerdiv; //Return the component to the calling location
-//   }
-
-// });
-
-// //Create the edit form component
-// function createEditForm(oneJournalEntry) { //Create a template containing the data for the component from the database
-//   let editFormTemplate = `
-//             *************************
-//             -------Please edit the Entry below (Origninal Information Shown Above)---------
-//             *************************
-//         <fieldset>
-//             <label for="journalDate">Date of Entry</label>
-//             <input type="date" name="journalDate1" id="journalDate1" value =${oneJournalEntry.Date_of_Entry} required>
-//         </fieldset>
-//         <input type="hidden" id="journal-id1" value=${oneJournalEntry.id}>
-//         <fieldset>
-//             <label for="conceptsCovered">Concepts Covered</label>
-//             <input type="text" name="conceptsCovered1" id="conceptsCovered1" value="${oneJournalEntry.Concepts_Covered}"required>
-//         </fieldset>
-//         <fieldset>
-//             <label for="journalEntry">Journal Entry</label>
-//             <textarea name="journalEntry1" id="journalEntry1" required></textarea>
-//         </fieldset>
-//         <fieldset>
-//             <label for="moodForDay">Mood For the Day</label>
-//             <select id="moodForDay1" required>
-//                 <option value="excited" ${oneJournalEntry.Mood_for_the_Day === "excited" ? "selected": ""}>Excited</option>
-//                 <option value="happy" ${oneJournalEntry.Mood_for_the_Day === "happy" ? "selected": ""}>Happy</option>
-//                 <option value="stressed" ${oneJournalEntry.Mood_for_the_Day === "stressed" ? "selected": ""}>Stressed</option>
-//                 <option value="overwhelmed" ${oneJournalEntry.Mood_for_the_Day === "overwhelmed" ? "selected": ""}>Overwhelmed</option>
-//             </select>
-//         </fieldset>
-//         <button id="journal-save-btn">save journal entry</button>` //Textarea VALUE cannot be set-up within the string--done in the setupEditFormandFunctionality function
-// return editFormTemplate
-// }
-
-// function setupEditFormandFunctionality(editContainerId, editForm, oneJournalEntry) {
-
-//   document.querySelector(`#${editContainerId}`).innerHTML = editForm //Place the edit form into the edit location for that id
-//   document.querySelector("#journalEntry1").innerHTML = oneJournalEntry.Journal_Entry; //Backfill component value into the Textarea element
-//   document.querySelector("#journal-save-btn").addEventListener("click", () => {//Add eventlistener for the <Save the Edited Entry> button
-//     //When the <Save the Edited Entry> button is clicked, collect the value of each field (including the hidden id field!)
-//     let journalDate = document.querySelector("#journalDate1").value
-//     let journalId = document.querySelector("#journal-id1").value
-//     let journalConcepts = document.querySelector("#conceptsCovered1").value
-//     let journalEntry = document.querySelector("#journalEntry1").value
-//     let journalMood = document.querySelector("#moodForDay1").value
-//     //Send the values to create an object [calling the Factory Function createEntryItem]
-//     let updatedJournal = createEntryItem( journalDate, journalConcepts, journalEntry, journalMood )
-//     //Add the id from the hidden entry field into the newly created object so that the right data can be updated in the database
-//     updatedJournal.id = journalId
-//     //Update the data, get the latest instance of the database and show it in the DOM
-//     API.updateJournalEntry(updatedJournal).then(API.getJournalEntries).then(parsedEntries => {
-//       DOMMethods.addThisToTheDOM(parsedEntries);
-//     });
-//   })
-// }
