@@ -14,10 +14,10 @@ newUserHeader.textContent = "If you are a new user, click here to register"
 newUserHeader.setAttribute("href", "#")
 newUserHeader.setAttribute("id", "registerUserLinkId")
 
-//Creating Elements for Registration Login
-const registrationParentDiv = document.createElement("div")
-const passwordRegistration = document.createElement("input")
-const userRegistration = document.createElement("input")
+//Creating Elements for Login
+const loginParentDiv = document.createElement("div")
+const passwordLogin = document.createElement("input")
+const userLogin = document.createElement("input")
 const loginButton = document.createElement("button")
 loginButton.textContent = "login"
 
@@ -25,35 +25,38 @@ const registrationButton = document.createElement("button")
 registrationButton.textContent = "register"
 
 
-//Setting ID's for Registration Elements
-registrationParentDiv.setAttribute("id", "registrationParentDivId")
-passwordRegistration.setAttribute("id", "registrationpasswordId")
-passwordRegistration.setAttribute("placeholder", "password")
-userRegistration.setAttribute("id", "registrationUserId")
-userRegistration.setAttribute("placeholder", "username")
+//Setting ID's for Login Elements
+loginParentDiv.setAttribute("id", "loginParentDivId")
+passwordLogin.setAttribute("id", "loginpasswordId")
+passwordLogin.setAttribute("placeholder", "password")
+userLogin.setAttribute("id", "loginUserId")
+userLogin.setAttribute("placeholder", "username")
 loginButton.setAttribute("id", "loginButtonId")
 
+//Setting ID's for Registration Elements
+registrationButton.setAttribute("id", "registrationButtonId")
+
 //Attaching Elements to the DOM
-registrationParentDiv.appendChild(loginHeader)
-registrationParentDiv.appendChild(userRegistration)
-registrationParentDiv.appendChild(passwordRegistration)
-registrationParentDiv.appendChild(loginButton)
-registrationParentDiv.appendChild(newUserHeader)
+loginParentDiv.appendChild(loginHeader)
+loginParentDiv.appendChild(userLogin)
+loginParentDiv.appendChild(passwordLogin)
+loginParentDiv.appendChild(loginButton)
+loginParentDiv.appendChild(newUserHeader)
 
 //Putting it in the DOM
 const outputLocation = document.querySelector("#container")
-outputLocation.appendChild(registrationParentDiv)
+outputLocation.appendChild(loginParentDiv)
 
 //Adding event listener to login button
 loginButton.addEventListener("click", ()=> {
     //TODO: check to see if the user exists in the database
     //if the user exists, log them in. If user doesn't exist offer the the chance to /////login and remove login button and replace with login button.
     //need event listener on a new login button.
-    const valueRegistrationpassword = document.getElementById("registrationpasswordId").value
-    const valueRegistrationUser = document.getElementById("registrationUserId").value
+    const valueLoginPassword = document.getElementById("loginpasswordId").value
+    const valueLoginUser = document.getElementById("loginUserId").value
     const oneUser = {
-        username: `${valueloginUser}`,
-        password: `${valueloginpassword}`
+        "username": valueLoginUser,
+        "password": valueLoginPassword
     }
     API.addtoDatabase("users", oneUser).then(data => data.json()).then(id =>
         console.log("id", id))
