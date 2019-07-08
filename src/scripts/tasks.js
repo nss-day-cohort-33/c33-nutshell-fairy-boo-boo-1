@@ -123,30 +123,30 @@ function nut_taskRelated() {
             let checkboxTask = document.createElement("input")
             checkboxTask.setAttribute("type", "checkbox")
             checkboxTask.setAttribute("id", `${data[i].id}`)
-            checkboxTask.addEventListener("click", (event) => {
-              console.log("id of target", event.target.id)
-              API.getSpecificItemfromDatabase("tasks", event.target.id)
-              .then(data => {
-                console.log("itemsentback",data)
-                const itemtoSendBack =
-                {  "userId": data.userId,
-                    "taskName": data.taskName,
-                    "completionDate": data.completionDate,
-                    "completedTask": true,
-                    "id": event.target.id
-                }
-                API.updateDatabase("tasks", itemtoSendBack)
-              })
-              .then(() => getAllTasksfromDB())
-            })
             divforTaskslist.appendChild(headingTaskNumber)
             divforTaskslist.appendChild(labelNameofTask)
             divforTaskslist.appendChild(labelCompletionDate)
             divforTaskslist.appendChild(labelCompleted)
             divforTaskslist.appendChild(hiddenInput)
             divforTaskslist.appendChild(checkboxTask) //Attach the checkbox
-            placeonDOMtree.appendChild(divforTaskslist)
-            }
+            divforTaskslist.addEventListener("click", (event) => { //Event listener on parent div
+              console.log("id of target", event.target.id)
+              API.getSpecificItemfromDatabase("tasks", event.target.id)
+              .then(data => {
+                console.log("itemsentback",data)
+                const itemtoSendBack =
+                {  "userId": data.userId,
+                "taskName": data.taskName,
+                "completionDate": data.completionDate,
+                "completedTask": true,
+                "id": event.target.id
+              }
+              API.updateDatabase("tasks", itemtoSendBack)
+            })
+            .then(() => getAllTasksfromDB())
+          })
+          placeonDOMtree.appendChild(divforTaskslist)
+          }
           else {
             taskItemNumber -= 1;  //Reset taskitem number backward if the Completed task value is true
           }

@@ -996,35 +996,35 @@
       "userId": 17,
       "taskName": "test 5",
       "completionDate": "2019-07-07",
-      "completedTask": false,
+      "completedTask": true,
       "id": 12
     },
     {
       "userId": 17,
       "taskName": "test 6",
       "completionDate": "2019-07-08",
-      "completedTask": false,
+      "completedTask": true,
       "id": 13
     },
     {
       "userId": 17,
       "taskName": "item 7",
       "completionDate": "2019-07-07",
-      "completedTask": false,
+      "completedTask": true,
       "id": 14
     },
     {
       "userId": 17,
       "taskName": "test this one too",
       "completionDate": "2019-07-07",
-      "completedTask": false,
+      "completedTask": true,
       "id": 15
     },
     {
       "userId": 17,
       "taskName": "test again 0511",
       "completionDate": "2019-07-07",
-      "completedTask": false,
+      "completedTask": true,
       "id": 16
     },
     {
@@ -1194,6 +1194,41 @@
       "completionDate": "2019-07-07",
       "completedTask": true,
       "id": 40
+    },
+    {
+      "userId": 17,
+      "taskName": "task 0610",
+      "completionDate": "2019-07-08",
+      "completedTask": false,
+      "id": 41
+    },
+    {
+      "userId": 17,
+      "taskName": "task 0618",
+      "completionDate": "2019-07-08",
+      "completedTask": false,
+      "id": 42
+    },
+    {
+      "userId": 17,
+      "taskName": "task 0627",
+      "completionDate": "2019-07-08",
+      "completedTask": false,
+      "id": 43
+    },
+    {
+      "userId": 17,
+      "taskName": "task 0925",
+      "completionDate": "2019-07-08",
+      "completedTask": false,
+      "id": 44
+    },
+    {
+      "userId": 17,
+      "taskName": "task 0939",
+      "completionDate": "2019-07-08",
+      "completedTask": false,
+      "id": 45
     }
   ],
   "friends": [

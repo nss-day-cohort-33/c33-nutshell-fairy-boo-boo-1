@@ -1,3 +1,5 @@
+//This is the welcome page where the login and registration features are implemented
+
 import { API } from "./api.js"
 import {createChats, getData} from "./chats.js"
 
