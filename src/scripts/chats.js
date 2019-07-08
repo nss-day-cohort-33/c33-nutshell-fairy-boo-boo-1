@@ -62,10 +62,8 @@ function createNewChat() {
 
   // set attributes for new Message
   newMessage.setAttribute("type", "text");
-  newMessage.setAttribute("placeholder", "Enter new message");
-  // newMessage.setAttribute("rows", "5");
-  // newMessage.setAttribute("cols", "100");
   newMessage.setAttribute("id", "newMessageId");
+  newMessage.setAttribute("placeholder", "Enter new message");
   newMessageBtn.setAttribute("id", "newMessageBtnId");
 
   //Attach new message input to the DOM with appendChild
@@ -77,20 +75,35 @@ function createNewChat() {
   newMessageLocation.appendChild(newMessageInputParentDiv);
 
   //add event listener to new message button
-  newMessageBtn.addEventListener("click", () => {
-    console.log("link clicked");
-  });
+  // newMessageBtn.addEventListener("click", () => {
+  // });
 }
+document.querySelector("#newMessageBtn").addEventListener("click", () => {
+  let newMessages = document.querySelector("#newMessage").value;
+  // example of calling a factory function
+  let newMessage = newMessageObj(newMessage);
+  addNewMessage(newMessage)
+    .then(data => data.json())
+    .then(dataJS => {
+      console.log(dataJS.messages);
+      newMessage.innerHTML = "";
+    });
+});
 // post new message to database
-function postData(resources, data) {
-  return fetch(`http://localhost:8088/${resources}`, {
+function addNewMessage(messages, data) {
+  console.log("Hello Misty");
+  return fetch(`http://localhost:8088/${messages}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
   });
 }
-
-export { createChats, getData, messageDate, createNewChat, postData };
+function newMessageObj(newMessge) {
+  return {
+    message: newMessage
+  };
+}
+export { createChats, getData, messageDate, createNewChat, addNewMessage };
 
 // function makeFormComponent() {
 //   return `

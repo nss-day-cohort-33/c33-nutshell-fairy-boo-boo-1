@@ -1,7 +1,13 @@
 //This is the welcome page where the login and registration features are implemented
 
 import { API } from "./api.js";
-import { createChats, getData, messageDate, createNewChat } from "./chats.js";
+import {
+  createChats,
+  getData,
+  messageDate,
+  createNewChat,
+  addNewMessage
+} from "./chats.js";
 import { getDate } from "./articles.js";
 
 function getOurSessionItems () {
@@ -55,60 +61,58 @@ const registrationButton = document.createElement("button");
 registrationButton.textContent = "register";
 
 //Setting ID's for Login Elements
-loginParentDiv.setAttribute("id", "loginParentDivId")
-passwordLogin.setAttribute("id", "loginpasswordId")
-passwordLogin.setAttribute("placeholder", "password")
-userLogin.setAttribute("id", "loginUserId")
-userLogin.setAttribute("placeholder", "username")
-loginButton.setAttribute("id", "loginButtonId")
+loginParentDiv.setAttribute("id", "loginParentDivId");
+passwordLogin.setAttribute("id", "loginpasswordId");
+passwordLogin.setAttribute("placeholder", "password");
+userLogin.setAttribute("id", "loginUserId");
+userLogin.setAttribute("placeholder", "username");
+loginButton.setAttribute("id", "loginButtonId");
 
 //Setting ID's for Registration Elements
-registrationButton.setAttribute("id", "registrationButtonId")
+registrationButton.setAttribute("id", "registrationButtonId");
 
 //Attaching Elements to the DOM
-loginParentDiv.appendChild(loginHeader)
-loginParentDiv.appendChild(userLogin)
-loginParentDiv.appendChild(passwordLogin)
-loginParentDiv.appendChild(loginButton)
-loginParentDiv.appendChild(newUserHeader)
+loginParentDiv.appendChild(loginHeader);
+loginParentDiv.appendChild(userLogin);
+loginParentDiv.appendChild(passwordLogin);
+loginParentDiv.appendChild(loginButton);
+loginParentDiv.appendChild(newUserHeader);
 
 //Putting it in the DOM
-const outputLocation = document.querySelector("#container")
-outputLocation.appendChild(loginParentDiv)
+const outputLocation = document.querySelector("#container");
+outputLocation.appendChild(loginParentDiv);
 
 //Adding event listener to login button
-loginButton.addEventListener("click", ()=> {
-    //TODO: check to see if the user exists in the database
-    //if the user exists, log them in. If user doesn't exist offer the the chance to /////login and remove login button and replace with login button.
-    //need event listener on a new login button.
-    const valueLoginPassword = document.getElementById("loginpasswordId").value
-    const valueLoginUser = document.getElementById("loginUserId").value
-    let resultsUserCheck = checkifUserExists(valueLoginUser, valueLoginPassword)
-    console.log("welcome","resultsUserCheck",resultsUserCheck)
-    // dealwithUserCheck(resultsUserCheck)
+loginButton.addEventListener("click", () => {
+  //TODO: check to see if the user exists in the database
+  //if the user exists, log them in. If user doesn't exist offer the the chance to /////login and remove login button and replace with login button.
+  //need event listener on a new login button.
+  const valueLoginPassword = document.getElementById("loginpasswordId").value;
+  const valueLoginUser = document.getElementById("loginUserId").value;
+  const oneUser = {
+    username: valueLoginUser,
+    password: valueLoginPassword
+  };
+  API.addtoDatabase("users", oneUser)
+    .then(data => data.json())
+    .then(id => console.log("id", id));
+  sessionStorage.setItem("password", valueloginpassword);
+  sessionStorage.setItem("username", valueloginUser);
+  console.log(valueloginpassword);
+  console.log(valueloginUser);
+});
 
-    const oneUser = {
-                    "username": valueLoginUser,
-                    "password": valueLoginPassword
-                }
-
-    API.addtoDatabase("users", oneUser).then(data => data.json()).then(id =>
-        console.log("id", id)) //Returns the id of the user added to database
-    sessionStorage.setItem("username", valueLoginUser)
-    sessionStorage.setItem("password", valueLoginPassword)
-    getOurSessionItems(); //To get information from Session Storage
-})
-
-newUserHeader.addEventListener("click", ()=> {
-//TODO: console.log("link clicked")
-document.querySelector("#loginButtonId").style.display = "none"
-document.querySelector("#loginHeaderId").textContent = "Please register Below"
-document.querySelector("#registerUserLinkId").style.display = "none"
-registrationParentDiv.appendChild(registrationButton)
-})
+newUserHeader.addEventListener("click", () => {
+  //TODO: console.log("link clicked")
+  document.querySelector("#loginButtonId").style.display = "none";
+  document.querySelector("#loginHeaderId").textContent =
+    "Please register Below";
+  document.querySelector("#registerUserLinkId").style.display = "none";
+  registrationParentDiv.appendChild(registrationButton);
+});
 createChats(); //for testing
 getData("messages"); //misty's stuff
 messageDate("dateString");
 createNewChat(); // testing new message
-
+addNewMessage("message");
 export { welcomeTitle };
