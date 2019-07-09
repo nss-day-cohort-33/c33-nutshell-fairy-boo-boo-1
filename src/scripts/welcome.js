@@ -4,6 +4,36 @@ import { API } from "./api.js";
 import { createChats, getData, messageDate, createNewChat } from "./chats.js";
 import { getDate } from "./articles.js";
 
+function getOurSessionItems () {
+    let activeUserId = sessionStorage.getItem("username")
+    let activePasswordId = sessionStorage.getItem("password")
+    console.log("welcome","activeUserId",activeUserId,"activePasswordId",activePasswordId)
+}
+
+function checkifUserExists (userComingIn, passComingIn) {
+    let userCheck = {
+        userExists1:  false,
+        passwordExists1: false
+    }
+    API.getfromDatabase("users").then(data => {
+        let userExists = false
+        let passwordExists = false
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].username === userComingIn && data[i].password === passComingIn) {
+                userExists = true
+                passwordExists = true
+            }
+            else if (data[i].username === userComingIn && data[i].password !== passComingIn) {
+                userExists = true
+                passwordExists = false
+            }
+        }
+        userCheck.userExists1 = userExists //set the values of the userCheck object
+        userCheck.passwordExists1 = passwordExists
+    })
+    return userCheck
+}
+
 const welcomeTitle = document.querySelector("#container");
 welcomeTitle.innerHTML = "<h1>Welcome to Nutshell</h1>";
 const loginHeader = document.createElement("h4");
@@ -53,16 +83,20 @@ loginButton.addEventListener("click", ()=> {
     //need event listener on a new login button.
     const valueLoginPassword = document.getElementById("loginpasswordId").value
     const valueLoginUser = document.getElementById("loginUserId").value
+    let resultsUserCheck = checkifUserExists(valueLoginUser, valueLoginPassword)
+    console.log("welcome","resultsUserCheck",resultsUserCheck)
+    // dealwithUserCheck(resultsUserCheck)
+
     const oneUser = {
-        "username": valueLoginUser,
-        "password": valueLoginPassword
-    }
+                    "username": valueLoginUser,
+                    "password": valueLoginPassword
+                }
+
     API.addtoDatabase("users", oneUser).then(data => data.json()).then(id =>
-        console.log("id", id))
-    sessionStorage.setItem("password", valueloginpassword)
-    sessionStorage.setItem("username", valueloginUser)
-    console.log(valueloginpassword)
-    console.log(valueloginUser)
+        console.log("id", id)) //Returns the id of the user added to database
+    sessionStorage.setItem("username", valueLoginUser)
+    sessionStorage.setItem("password", valueLoginPassword)
+    getOurSessionItems(); //To get information from Session Storage
 })
 
 newUserHeader.addEventListener("click", ()=> {
