@@ -1,5 +1,5 @@
 import { API } from "./api.js";
-
+//attaching the articles form to the hard dom element
 function articleForm() {
   const articleContainer = document.querySelector("#container2");
   articleContainer.innerHTML = "<h1>Articles<h1>";
@@ -16,7 +16,8 @@ function articleForm() {
   titleInput.setAttribute("id", "titleInputId");
   synopsisInput.setAttribute("id", "synopsisInputId");
   urlInput.setAttribute("id", "urlInputId");
-  submitBtn.setAttribute("id", "submitBtnId");
+  submitBtn.setAttribute("id", "submitArticleBtnId");
+
 
   //appending these children
   titleFormParent.appendChild(titleInput);
@@ -25,25 +26,14 @@ function articleForm() {
   titleFormParent.appendChild(submitBtn);
 
   articleContainer.appendChild(titleFormParent);
-
-  function getDate() {
-    let currentDate = new Date();
-    let date = currentDate.getDate();
-    let month = currentDate.getMonth(); //Be careful! January is 0 not 1
-    let year = currentDate.getFullYear();
-    let dates = new Date();
-    let timestamp = dates.getTime();
-    let dateString = date + "-" + (month + 1) + "-" + year + " " + timestamp;
-
-    console.log(dateString);
-  }
-
+  console.log(submitBtn);
   //new buttons for editing, saving, and deleting.
   const articleSaveBtn = document.createElement("button");
   articleSaveBtn.textContent = "Save";
+  console.log(submitBtn);
 
   submitBtn.addEventListener("click", () => {
-      console.log("button Clicked")
+    console.log("button Clicked");
     const valueArticleName = document.getElementById("titleInputId").value;
     const valueArticleDate = document.getElementById("synopsisInputId").value;
     const valueArticleLocation = document.getElementById("urlInputId").value;
@@ -61,7 +51,7 @@ function articleForm() {
       .then(entireObject => {
         console.log("entireObject", entireObject);
         let outerdiv = document.createElement("div");
-        console.log(putitHere)
+        console.log(putitHere);
         for (let i = 0; i < entireObject.length; i++) {
           outerdiv.setAttribute("id", `div-${entireObject[i].id}`);
           outerdiv.innerHTML = `
@@ -70,7 +60,7 @@ function articleForm() {
                <p>Location:${entireObject[i].location}</p>
                <p>Date: ${entireObject[i].date}</p>
             `;
-            console.log(putitHere)
+          console.log(putitHere);
           putitHere.appendChild(outerdiv);
           const articleDeleteButton = document.createElement("button");
           console.log("Object Id", entireObject[i].id);
@@ -93,25 +83,35 @@ function articleForm() {
           outerdiv.appendChild(articleDeleteButton);
         }
       });
-      function getArticleData(resources) {
-        return fetch(`http://localhost:8088/${resources}`)
-          .then(data => data.json())
-          .then(data => {
-            console.log(`${resources}`, data);
-            const placeToPutOutPut = document.querySelector("#container3");
-            console.log(placeToPutOutPut);
-            data.forEach(article => {
-              document.querySelector("#container2").innerHTML += `<div>${
-                article.id
-              } 
-                      ${article.title} ${article.synopsis} <a>${
-                article.URL
-              }</a> ${article.timestamp} </div>`;
-            });
-          });
-    }
-    getArticleData("articles");
   });
 }
 
-export { articleForm };
+function getDate() {
+    let currentDate = new Date();
+    let date = currentDate.getDate();
+    let month = currentDate.getMonth(); //Be careful! January is 0 not 1
+    let year = currentDate.getFullYear();
+    let dates = new Date();
+    let timestamp = dates.getTime();
+    let dateString = date + "-" + (month + 1) + "-" + year + " " + timestamp;
+
+    console.log(dateString);
+  }
+
+function getArticleData(resources) {
+  return fetch(`http://localhost:8088/${resources}`)
+    .then(data => data.json())
+    .then(data => {
+      console.log(`${resources}`, data);
+      const placeToPutOutPut = document.querySelector("#container3");
+      console.log(placeToPutOutPut);
+      data.forEach(article => {
+        document.querySelector("#container4").innerHTML += `<div>${article.id}
+                  ${article.title} ${article.synopsis} <a>${article.URL}</a> ${
+          article.timestamp
+        } </div>`;
+      });
+    });
+}
+
+export { articleForm, getArticleData };
