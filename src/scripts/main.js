@@ -10,7 +10,6 @@ console.log("Your Webpack application is set up and ready to go. Please start wr
 
 nut_taskRelated(); //Call the function defined in tasks.js--joy
 articleForm()
-getDate()
 const fakeName = "users"
 const messages = "messages"
 const events = "events"

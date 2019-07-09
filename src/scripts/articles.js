@@ -47,41 +47,46 @@ function articleForm() {
       location: valueArticleLocation,
       date: valueArticleDate
     };
-    let putitHere = document.querySelector("#container4");
-    API.getfromDatabase("articles")
-    //API.postEventEntries(articleItem)
-      .then(API.getfromDatabase("articles"))
-      .then(entireObject => {
-        console.log("entireObject", entireObject);
-        let outerdiv = document.createElement("div");
-        console.log(putitHere);
-        for (let i = 0; i < entireObject.length; i++) {
-          outerdiv.setAttribute("id", `div-${entireObject[i].id}`);
-          outerdiv.innerHTML = `
-               <p>User Id:${entireObject[i].userId}</p>
-               <p>Title:${entireObject[i].title}</p>
-               <p>Location:${entireObject[i].location}</p>
-               <p>Date: ${entireObject[i].date}</p>
-            `;
-          console.log(putitHere);
-          putitHere.appendChild(outerdiv);
-          const articleDeleteButton = document.createElement("button");
-          console.log("Object Id", entireObject[i].id);
-          articleDeleteButton.setAttribute("id", `${entireObject[i].id}`);
-          articleDeleteButton.textContent = "Delete Article";
+    API.addtoDatabase("articles", articleItem)
+    .then( () => {
+        let putitHere = document.querySelector("#container4");
+        API.getfromDatabase("articles")
+        //API.postEventEntries(articleItem)
+          .then(API.getfromDatabase("articles"))
+          .then(entireObject => {
+            console.log("entireObject", entireObject);
+            let outerdiv = document.createElement("div");
+            console.log(putitHere);
+            for (let i = 0; i < entireObject.length; i++) {
+              outerdiv.setAttribute("id", `div-${entireObject[i].id}`);
+              outerdiv.innerHTML = `
+                   <p>User Id:${entireObject[i].userId}</p>
+                   <p>Title:${entireObject[i].title}</p>
+                   <p>Synopsis:${entireObject[i].location}</p>
+                   <p>Url: ${entireObject[i].date}</p>
+                `;
+              console.log(putitHere);
+              putitHere.appendChild(outerdiv);
+              const articleDeleteButton = document.createElement("button");
+              console.log("Object Id", entireObject[i].id);
+              articleDeleteButton.setAttribute("id", `${entireObject[i].id}`);
+              articleDeleteButton.textContent = "Delete Article";
 
-          articleDeleteButton.addEventListener("click", () => {
-            let idOfItemToBeDeleted = event.target.id;
-            let divToBeDeleted = document.querySelector(
-              `#div-${idOfItemToBeDeleted}`
-            );
-            divToBeDeleted.innerHTML = "";
-            API.deleteEventEntry(entireObject[i].id);
+              articleDeleteButton.addEventListener("click", () => {
+                let idOfItemToBeDeleted = event.target.id;
+                let divToBeDeleted = document.querySelector(
+                  `#div-${idOfItemToBeDeleted}`
+                );
+                console.log(divToBeDeleted)
+                divToBeDeleted.innerHTML = "";
+                API.getfromDatabase(entireObject[i].id);
 
+              });
+              outerdiv.appendChild(articleDeleteButton);
+            }
           });
-          outerdiv.appendChild(articleDeleteButton);
-        }
-      });
+
+    })
   });
 }
 
