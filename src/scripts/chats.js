@@ -30,7 +30,7 @@ function createChats() {
       let id = event.target.id.split("-")[1]
       console.log(`Here is the id you need! ${id}`)
       let divIWantToTarget = document.querySelector(`#msg-container-${id}`)
-      let message = document.querySelector(`#taco-${id}`).textContent
+      let message = document.querySelector(`#msg-${id}`).textContent
       console.log(message)
       divIWantToTarget.innerHTML = ""
       divIWantToTarget.innerHTML = `<h1>Hi</h1>
