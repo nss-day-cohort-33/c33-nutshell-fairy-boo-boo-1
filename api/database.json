@@ -64,6 +64,11 @@
       "username": "misty",
       "password": "karla",
       "id": 13
+    },
+    {
+      "username": "",
+      "password": "",
+      "id": 14
     }
   ],
   "messages": [
@@ -156,50 +161,7 @@
       "id": 3
     }
   ],
-  "tasks": [
-    {
-      "userId": 17,
-      "taskName": "third item",
-      "completionDate": "2019-07-07",
-      "completedTask": true,
-      "id": 10
-    },
-    {
-      "userId": 17,
-      "taskName": "task 4",
-      "completionDate": "2019-07-07",
-      "completedTask": true,
-      "id": 11
-    },
-    {
-      "userId": 17,
-      "taskName": "test 5",
-      "completionDate": "2019-07-07",
-      "completedTask": true,
-      "id": 12
-    },
-    {
-      "userId": 17,
-      "taskName": "test 6",
-      "completionDate": "2019-07-08",
-      "completedTask": true,
-      "id": 13
-    },
-    {
-      "userId": 17,
-      "taskName": "task 0242",
-      "completionDate": "2019-07-08",
-      "completedTask": true,
-      "id": 14
-    },
-    {
-      "userId": 17,
-      "taskName": "task 0319",
-      "completionDate": "2019-07-08",
-      "completedTask": false,
-      "id": 15
-    }
-  ],
+  "tasks": [],
   "friends": [
     {
       "id": 1,
