@@ -1,5 +1,5 @@
 import "./welcome.js"
-import { eventsjs, getEventDataFromDatabase, deleteEventListener} from "./events.js"
+import { eventsjs, getEventDataFromDatabase, deleteEventListener, editEventListener} from "./events.js"
 
 //import "./articles.js"
 import { articleForm, getDate, getArticleData} from "./articles.js"
@@ -29,3 +29,4 @@ getArticleData("articles")
 eventsjs(); //to test Karla's stuff
 getEventDataFromDatabase(events);
 deleteEventListener();
+editEventListener();

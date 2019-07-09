@@ -75,6 +75,7 @@ function getEventDataFromDatabase(resources) {
                <p>Location: ${events.location}</p>
                <p>Date: ${events.date}</p>
                <button id="delete-${events.id}">Delete Event</button>
+               <button id="edit-${events.id}">Edit Event</button>
                </div>
             `;
       });
@@ -85,17 +86,44 @@ function deleteEventListener() {
   document.querySelector("#karlaTest2").addEventListener("click", () => {
     if (event.target.id.startsWith("delete")) {
       const id = +event.target.id.split("-")[1];
-      API.deleteEventEntry(id).then(response => {
+      API.deleteEventEntry(id)
+      .then(response => {
         document.querySelector("#karlaTest2").innerHTML = "";
         getEventDataFromDatabase("events");
       });
     }
+    if (event.target.id.startsWith("edit")) {
+        const id = +event.target.id.split("-")[1];
+
+    }
   });
 }
 
-export { eventsjs, getEventDataFromDatabase, deleteEventListener };
+//fetch it, change it, put it.. 
 
 
+
+
+export { eventsjs, getEventDataFromDatabase, deleteEventListener, editEventListener };
+
+
+
+
+
+
+// function onload() {
+//     document.designMode = "on"
+// }
+
+// function editJournalEntry(editedEntry) {
+//     return fetch(`http://localhost:3000/entries/${editedEntry.id}`, {
+//           method: "PUT",
+//           headers: {
+//               "Content-Type": "application/json"
+//           },
+//           body: JSON.stringify(editedEntry)
+//       })
+//   }
 
 
 
