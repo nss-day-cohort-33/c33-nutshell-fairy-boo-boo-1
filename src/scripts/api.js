@@ -28,7 +28,7 @@ const API = {
       }
     );
   },
-  //TODO: Events testing purposes, may need to be refactored
+  //Events testing purposes, may need to be refactored
   postEventEntries: function(theNewEvent) {
     return fetch("http://localhost:8088/events", {
       method: "POST",
@@ -49,6 +49,15 @@ const API = {
         "Content-Type": "application/json"
       }
     });
+  },
+  editEvent: (theNewEvent, id) => {
+    return fetch(`http://localhost:8088/events/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(theNewEvent)
+    }).then(res => res.json());
   },
   addNewMessage: function(newMessage) {
     return fetch("http://localhost:8088/messages", {

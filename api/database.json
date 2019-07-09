@@ -153,24 +153,23 @@
       "synopsis": "Hello this is an article about NSS",
       "URL": "http://nashvillesoftwareschool.com",
       "timestamp": "timestamp"
-    }
-  ],
-  "events": [
-    {
-      "userId": 1,
-      "title": "",
-      "location": "",
-      "date": "",
-      "id": 7
     },
     {
       "userId": 1,
-      "title": "",
-      "location": "",
-      "date": "",
-      "id": 8
+      "title": "what",
+      "location": "hell",
+      "date": "the",
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "title": "what",
+      "location": "hell",
+      "date": "the",
+      "id": 7
     }
   ],
+  "events": [],
   "tasks": [],
   "friends": [
     {
