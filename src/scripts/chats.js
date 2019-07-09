@@ -1,3 +1,5 @@
+import { API } from "./api.js";
+
 function createChats() {
   //create message container
   const messageTitle = document.querySelector("#test1"); //TODO: refactor to match page location
@@ -62,10 +64,8 @@ function createNewChat() {
 
   // set attributes for new Message
   newMessage.setAttribute("type", "text");
-  newMessage.setAttribute("placeholder", "Enter new message");
-  // newMessage.setAttribute("rows", "5");
-  // newMessage.setAttribute("cols", "100");
   newMessage.setAttribute("id", "newMessageId");
+  newMessage.setAttribute("placeholder", "Enter new message");
   newMessageBtn.setAttribute("id", "newMessageBtnId");
 
   //Attach new message input to the DOM with appendChild
@@ -76,37 +76,19 @@ function createNewChat() {
   // Add new message to the DOM
   newMessageLocation.appendChild(newMessageInputParentDiv);
 
-  //add event listener to new message button
+  function newMessageObj(newMessage) {
+    return {
+      userId: 1,
+      messageInput: newMessage,
+      timestamp: messageDate()
+    };
+  }
+  // add event listener to new message button
+
   newMessageBtn.addEventListener("click", () => {
-    console.log("link clicked");
+    let newMessages = document.querySelector("#newMessageId").value;
+    let addMessage = newMessageObj(newMessages);
+    API.addNewMessage(addMessage).then(data => data.json());
   });
 }
-// post new message to database
-function postData(resources, data) {
-  return fetch(`http://localhost:8088/${resources}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
-}
-
-export { createChats, getData, messageDate, createNewChat, postData };
-
-// function makeFormComponent() {
-//   return `
-//     <input type="text" id="message-input" placeholder="your message">
-//     <button id="message-btn">Post message</button>
-//   `
-//   function renderForm(form) {  //TODO: renderForm
-//     document.querySelector("#container").innerHTML = form //TODO: change container
-//   }
-
-//edit messages functionality
-// fetch(`http://localhost:8088/resource/${id}`, {
-//     method: "PUT",
-//     headers: {
-//         "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify(objectContainingNewProperties)
-// })
-// .then(res => res.json())
+export { createChats, getData, messageDate, createNewChat };

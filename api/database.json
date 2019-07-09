@@ -96,6 +96,11 @@
       "userId": 1,
       "messageInput": "message 5",
       "timestamp": "timestamp5"
+    },
+    {
+      "userId": 1,
+      "messageInput": "hi there",
+      "id": 6
     }
   ],
   "articles": [
