@@ -49,6 +49,15 @@ const API = {
         "Content-Type": "application/json"
       }
     });
+  },
+  addNewMessage: function(newMessage) {
+    return fetch("http://localhost:8088/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newMessage)
+    });
   }
 };
 
