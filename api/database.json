@@ -101,6 +101,11 @@
       "userId": 1,
       "messageInput": "hi there",
       "id": 6
+    },
+    {
+      "userId": 1,
+      "messageInput": "hello",
+      "id": 7
     }
   ],
   "articles": [
