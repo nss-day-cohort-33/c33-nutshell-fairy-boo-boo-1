@@ -11,9 +11,6 @@ console.log("Your Webpack application is set up and ready to go. Please start wr
 nut_taskRelated(); //Call the function defined in tasks.js--joy
 
 articleForm()
-getArticleData("articles")
-
-
 eventsjs(); //to test Karla's stuff
 
 

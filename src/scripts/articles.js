@@ -54,14 +54,14 @@ function articleForm() {
       location: valueArticleLocation,
       date: valueArticleDate
     };
+    let putitHere = document.querySelector("#container4");
 
     API.postEventEntries(articleItem)
       .then(API.getEventEntries)
       .then(entireObject => {
         console.log("entireObject", entireObject);
-        let putitHere = document.querySelector("#container4");
         let outerdiv = document.createElement("div");
-
+        console.log(putitHere)
         for (let i = 0; i < entireObject.length; i++) {
           outerdiv.setAttribute("id", `div-${entireObject[i].id}`);
           outerdiv.innerHTML = `
@@ -70,6 +70,7 @@ function articleForm() {
                <p>Location:${entireObject[i].location}</p>
                <p>Date: ${entireObject[i].date}</p>
             `;
+            console.log(putitHere)
           putitHere.appendChild(outerdiv);
           const articleDeleteButton = document.createElement("button");
           console.log("Object Id", entireObject[i].id);
@@ -92,22 +93,22 @@ function articleForm() {
           outerdiv.appendChild(articleDeleteButton);
         }
       });
-    function getArticleData(resources) {
-      return fetch(`http://localhost:8088/${resources}`)
-        .then(data => data.json())
-        .then(data => {
-          console.log(`${resources}`, data);
-          const placeToPutOutPut = document.querySelector("#container3");
-          console.log(placeToPutOutPut);
-          data.forEach(article => {
-            document.querySelector("#container2").innerHTML += `<div>${
-              article.id
-            } 
-                    ${article.title} ${article.synopsis} <a>${
-              article.URL
-            }</a> ${article.timestamp} </div>`;
+      function getArticleData(resources) {
+        return fetch(`http://localhost:8088/${resources}`)
+          .then(data => data.json())
+          .then(data => {
+            console.log(`${resources}`, data);
+            const placeToPutOutPut = document.querySelector("#container3");
+            console.log(placeToPutOutPut);
+            data.forEach(article => {
+              document.querySelector("#container2").innerHTML += `<div>${
+                article.id
+              } 
+                      ${article.title} ${article.synopsis} <a>${
+                article.URL
+              }</a> ${article.timestamp} </div>`;
+            });
           });
-        });
     }
     getArticleData("articles");
   });
