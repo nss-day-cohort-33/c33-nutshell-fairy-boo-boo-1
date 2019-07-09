@@ -60,13 +60,11 @@ function getArticleData(resources) {
         const placeToPutOutPut = document.querySelector("#container3")
         console.log(placeToPutOutPut)
         data.forEach(article => {
-            document.querySelector("#container2").innerHTML += `<div>${article.id} 
+            document.querySelector("#container2").innerHTML += `<div>${article.id}
             ${article.title} ${article.synopsis} <a>${article.URL}</a> ${article.timestamp} </div>`
         });
     }
 )}
-
-
 
 
 
