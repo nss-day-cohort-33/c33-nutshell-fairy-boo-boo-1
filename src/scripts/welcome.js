@@ -1,43 +1,48 @@
 //This is the welcome page where the login and registration features are implemented
 
 import { API } from "./api.js";
-import {
-  createChats,
-  getData,
-  messageDate,
-  createNewChat,
-  addNewMessage
-} from "./chats.js";
+import { createChats, getData, messageDate, createNewChat } from "./chats.js";
 import { getDate } from "./articles.js";
 
-function getOurSessionItems () {
-    let activeUserId = sessionStorage.getItem("username")
-    let activePasswordId = sessionStorage.getItem("password")
-    console.log("welcome","activeUserId",activeUserId,"activePasswordId",activePasswordId)
+function getOurSessionItems() {
+  let activeUserId = sessionStorage.getItem("username");
+  let activePasswordId = sessionStorage.getItem("password");
+  console.log(
+    "welcome",
+    "activeUserId",
+    activeUserId,
+    "activePasswordId",
+    activePasswordId
+  );
 }
 
-function checkifUserExists (userComingIn, passComingIn) {
-    let userCheck = {
-        userExists1:  false,
-        passwordExists1: false
+function checkifUserExists(userComingIn, passComingIn) {
+  let userCheck = {
+    userExists1: false,
+    passwordExists1: false
+  };
+  API.getfromDatabase("users").then(data => {
+    let userExists = false;
+    let passwordExists = false;
+    for (let i = 0; i < data.length; i++) {
+      if (
+        data[i].username === userComingIn &&
+        data[i].password === passComingIn
+      ) {
+        userExists = true;
+        passwordExists = true;
+      } else if (
+        data[i].username === userComingIn &&
+        data[i].password !== passComingIn
+      ) {
+        userExists = true;
+        passwordExists = false;
+      }
     }
-    API.getfromDatabase("users").then(data => {
-        let userExists = false
-        let passwordExists = false
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].username === userComingIn && data[i].password === passComingIn) {
-                userExists = true
-                passwordExists = true
-            }
-            else if (data[i].username === userComingIn && data[i].password !== passComingIn) {
-                userExists = true
-                passwordExists = false
-            }
-        }
-        userCheck.userExists1 = userExists //set the values of the userCheck object
-        userCheck.passwordExists1 = passwordExists
-    })
-    return userCheck
+    userCheck.userExists1 = userExists; //set the values of the userCheck object
+    userCheck.passwordExists1 = passwordExists;
+  });
+  return userCheck;
 }
 
 const welcomeTitle = document.querySelector("#container");
@@ -114,5 +119,4 @@ createChats(); //for testing
 getData("messages"); //misty's stuff
 messageDate("dateString");
 createNewChat(); // testing new message
-addNewMessage("message");
 export { welcomeTitle };

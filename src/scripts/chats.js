@@ -1,3 +1,5 @@
+import { API } from "./api.js";
+
 function createChats() {
   //create message container
   const messageTitle = document.querySelector("#test1"); //TODO: refactor to match page location
@@ -74,52 +76,19 @@ function createNewChat() {
   // Add new message to the DOM
   newMessageLocation.appendChild(newMessageInputParentDiv);
 
-  //add event listener to new message button
-  // newMessageBtn.addEventListener("click", () => {
-  // });
-}
-document.querySelector("#newMessageBtn").addEventListener("click", () => {
-  let newMessages = document.querySelector("#newMessage").value;
-  // example of calling a factory function
-  let newMessage = newMessageObj(newMessage);
-  addNewMessage(newMessage)
-    .then(data => data.json())
-    .then(dataJS => {
-      console.log(dataJS.messages);
-      newMessage.innerHTML = "";
-    });
-});
-// post new message to database
-function addNewMessage(messages, data) {
-  console.log("Hello Misty");
-  return fetch(`http://localhost:8088/${messages}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+  function newMessageObj(newMessage) {
+    return {
+      userId: 1,
+      messageInput: newMessage,
+      timestamp: messageDate()
+    };
+  }
+  // add event listener to new message button
+
+  newMessageBtn.addEventListener("click", () => {
+    let newMessages = document.querySelector("#newMessageId").value;
+    let addMessage = newMessageObj(newMessages);
+    API.addNewMessage(addMessage).then(data => data.json());
   });
 }
-function newMessageObj(newMessge) {
-  return {
-    message: newMessage
-  };
-}
-export { createChats, getData, messageDate, createNewChat, addNewMessage };
-
-// function makeFormComponent() {
-//   return `
-//     <input type="text" id="message-input" placeholder="your message">
-//     <button id="message-btn">Post message</button>
-//   `
-//   function renderForm(form) {  //TODO: renderForm
-//     document.querySelector("#container").innerHTML = form //TODO: change container
-//   }
-
-//edit messages functionality
-// fetch(`http://localhost:8088/resource/${id}`, {
-//     method: "PUT",
-//     headers: {
-//         "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify(objectContainingNewProperties)
-// })
-// .then(res => res.json())
+export { createChats, getData, messageDate, createNewChat };
