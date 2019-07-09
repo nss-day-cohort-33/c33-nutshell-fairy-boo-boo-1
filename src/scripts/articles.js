@@ -18,6 +18,9 @@ function articleForm() {
   urlInput.setAttribute("id", "urlInputId");
   submitBtn.setAttribute("id", "submitArticleBtnId");
 
+    titleInput.setAttribute("placeholder", "Title")
+    synopsisInput.setAttribute("placeholder", "Synopsis")
+    urlInput.setAttribute("placeholder", "URL")
 
   //appending these children
   titleFormParent.appendChild(titleInput);
@@ -45,9 +48,9 @@ function articleForm() {
       date: valueArticleDate
     };
     let putitHere = document.querySelector("#container4");
-
-    API.postEventEntries(articleItem)
-      .then(API.getEventEntries)
+    API.getfromDatabase("articles")
+    //API.postEventEntries(articleItem)
+      .then(API.getfromDatabase("articles"))
       .then(entireObject => {
         console.log("entireObject", entireObject);
         let outerdiv = document.createElement("div");
@@ -73,12 +76,8 @@ function articleForm() {
               `#div-${idOfItemToBeDeleted}`
             );
             divToBeDeleted.innerHTML = "";
-            //   console.log("DIV DELETED", divToBeDeleted)
-            //   console.log("entireObject", entireObject, "entireObject id", entireObject[i].id)
             API.deleteEventEntry(entireObject[i].id);
-            // .then(API.getEventEntries)
-            // .then(eventsData => { //the second loop starts here
-            // })
+
           });
           outerdiv.appendChild(articleDeleteButton);
         }
@@ -87,16 +86,16 @@ function articleForm() {
 }
 
 function getDate() {
-    let currentDate = new Date();
-    let date = currentDate.getDate();
-    let month = currentDate.getMonth(); //Be careful! January is 0 not 1
-    let year = currentDate.getFullYear();
-    let dates = new Date();
-    let timestamp = dates.getTime();
-    let dateString = date + "-" + (month + 1) + "-" + year + " " + timestamp;
+  let currentDate = new Date();
+  let date = currentDate.getDate();
+  let month = currentDate.getMonth(); //Be careful! January is 0 not 1
+  let year = currentDate.getFullYear();
+  let dates = new Date();
+  let timestamp = dates.getTime();
+  let dateString = date + "-" + (month + 1) + "-" + year + " " + timestamp;
 
-    console.log(dateString);
-  }
+  console.log(dateString);
+}
 
 function getArticleData(resources) {
   return fetch(`http://localhost:8088/${resources}`)
@@ -107,11 +106,12 @@ function getArticleData(resources) {
       console.log(placeToPutOutPut);
       data.forEach(article => {
         document.querySelector("#container4").innerHTML += `<div>${article.id}
-                  ${article.title} ${article.synopsis} <a>${article.URL}</a> ${
-          article.timestamp
-        } </div>`;
+                  ${article.title} ${article.synopsis} <a>${
+          article.URL
+        }</a> </div>`;
       });
     });
 }
+console.log()
 
 export { articleForm, getArticleData };
