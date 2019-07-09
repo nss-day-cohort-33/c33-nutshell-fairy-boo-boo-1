@@ -29,4 +29,3 @@ getArticleData("articles")
 eventsjs(); //to test Karla's stuff
 getEventDataFromDatabase(events);
 deleteEventListener();
-editEventListener();

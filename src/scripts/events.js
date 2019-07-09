@@ -86,29 +86,20 @@ function deleteEventListener() {
   document.querySelector("#karlaTest2").addEventListener("click", () => {
     if (event.target.id.startsWith("delete")) {
       const id = +event.target.id.split("-")[1];
-      API.deleteEventEntry(id)
-      .then(response => {
+      API.deleteEventEntry(id).then(response => {
         document.querySelector("#karlaTest2").innerHTML = "";
         getEventDataFromDatabase("events");
       });
     }
-    if (event.target.id.startsWith("edit")) {
-        const id = +event.target.id.split("-")[1];
-
-    }
   });
 }
 
-//fetch it, change it, put it.. 
 
 
 
 
-export { eventsjs, getEventDataFromDatabase, deleteEventListener, editEventListener };
 
-
-
-
+export { eventsjs, getEventDataFromDatabase, deleteEventListener };
 
 
 // function onload() {
@@ -137,13 +128,3 @@ export { eventsjs, getEventDataFromDatabase, deleteEventListener, editEventListe
 
 
 
-
-// const myNewDeleteButton = document.querySelector("#deleteButtonEvents");
-// // const thing = document.querySelector("#savedObjectId")
-// let art = document.getElementById("karlaTest")
-// let thing = art.getElementsByTagName("div")
-// myNewDeleteButton.addEventListener("click", () => {
-//     console.log("hey");
-//     // thing.parentElement.remove();
-//     thing.innerHTML = ""
-// })
