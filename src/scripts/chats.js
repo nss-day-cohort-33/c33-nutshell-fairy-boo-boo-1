@@ -2,7 +2,7 @@ import { API } from "./api.js";
 
 function createChats() {
   //create message container
-  const messageTitle = document.querySelector("#test1"); //TODO: refactor to match page location
+  const messageTitle = document.querySelector("#test1");
   messageTitle.innerHTML = "<h1>Messages</h1>";
 
   // create message textarea element
@@ -24,12 +24,43 @@ function createChats() {
   messageLocation.appendChild(messageInputParentDiv);
   messageLocation.appendChild(messageInput);
   messageLocation.appendChild(editMessageButton);
+  messageLocation.addEventListener("click", ()=>{
+    if (event.target.id.startsWith("edit")){
+      console.log(`Hi, I am the edit button with id ${event.target.id}`)
+      let id = event.target.id.split("-")[1]
+      console.log(`Here is the id you need! ${id}`)
+      let divIWantToTarget = document.querySelector(`#msg-container-${id}`)
+      let message = document.querySelector(`#taco-${id}`).textContent
+      console.log(message)
+      divIWantToTarget.innerHTML = ""
+      divIWantToTarget.innerHTML = `<h1>Hi</h1>
+      <input value="${message}"></input>`
+    }
+
+  })
 
   //add event listener
   editMessageButton.addEventListener("click", () => {
-    console.log("link clicked");
+getData(resources)
+    console.log("resources", messageInputId);
   });
 }
+
+// function updateMessages(id, shape, creation) {
+//   fetch(`http://localhost:8088/legos/${id}`)
+//   .then( lego => lego.json())
+//   .then( lego => {
+//     console.log(lego)
+//     lego.shape = shape
+//     lego.creation = creation
+//     fetch(`http://localhost:8088/legos/${id}`, {
+//       method: "PUT",
+//       headers:{
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify(lego)
+//     })
+//   })
 
 function messageDate() {
   let currentDate = new Date();
@@ -48,9 +79,13 @@ function getData(resources) {
     .then(data => {
       //   console.log("data", data),
       data.forEach(message => {
-        document.querySelector("#messageInputId").innerHTML += `<div>${
+        document.querySelector("#messageInputId").innerHTML += `<div id="msg-container-${message.id}">
+        <div id="taco-${message.id}">${
           message.messageInput
-        }</div><p>${message.timestamp}<p>`;
+        }</div><p>${message.timestamp}<p>
+        <button id="edit-${message.id}">Edit</button>
+        <div>`
+        ;
       });
     });
 }
