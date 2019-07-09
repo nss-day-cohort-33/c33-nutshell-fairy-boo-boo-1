@@ -55,13 +55,10 @@ function eventsjs() {
     API.postEventEntries(eventItem).then(() => {
       getEventDataFromDatabase("events");
     });
-    //   });
   });
 }
 
 //function to render all events to DOM
-//run delete and after delete run function to render all events
-
 function getEventDataFromDatabase(resources) {
   return fetch(`http://localhost:8088/${resources}`)
     .then(data => data.json())
@@ -91,40 +88,30 @@ function deleteEventListener() {
         getEventDataFromDatabase("events");
       });
     }
+    if (event.target.id.startsWith("edit")) {
+      const id = +event.target.id.split("-")[1];
+      API.getEventEntries(); //fetch it
+      //function to edit
+      //    API.postEventEntries(eventItem);
+    }
   });
 }
 
-
-
-
-
+const eventsForm = {
+  inputForm: `
+        <section id="eventsInputContainer">
+            <input type="hidden" id=eventsHiddenInput value="">
+            <input type="text" id="eventTitleInput" class="inputField" placeholder="Event Name">
+            <input type="text" id="eventLocationInput" class="inputField" placeholder="Event Location">
+            <input type="date" id="eventDateInput" class="inputField">
+            <div class="postButtonContainer">
+                <button id="postEventBtn" class="postButton">Save</button>
+                <button id="cancelEventPost" class="postButton">Cancel</button>
+            </div>
+        </section>`,
+  formButton: `
+        <button id="createEventBtn">Create A New Event</button>
+        `
+};
 
 export { eventsjs, getEventDataFromDatabase, deleteEventListener };
-
-
-// function onload() {
-//     document.designMode = "on"
-// }
-
-// function editJournalEntry(editedEntry) {
-//     return fetch(`http://localhost:3000/entries/${editedEntry.id}`, {
-//           method: "PUT",
-//           headers: {
-//               "Content-Type": "application/json"
-//           },
-//           body: JSON.stringify(editedEntry)
-//       })
-//   }
-
-
-
-
-
-
-
-
-
-
-
-
-

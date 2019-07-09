@@ -24,6 +24,6 @@ getArticleData("articles")
 // getData(friends)
 //console.log(getData())
 
-eventsjs(); //to test Karla's stuff
+eventsjs(); //Events
 getEventDataFromDatabase(events);
 deleteEventListener();
