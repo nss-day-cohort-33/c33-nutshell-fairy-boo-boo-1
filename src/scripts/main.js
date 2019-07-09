@@ -1,5 +1,5 @@
 import "./welcome.js"
-import { eventsjs } from "./events.js"
+import { eventsjs, getEventDataFromDatabase, deleteEventListener, editEventListener} from "./events.js"
 
 //import "./articles.js"
 import { articleForm, getArticleData } from "./articles.js"
@@ -10,5 +10,21 @@ console.log("Your Webpack application is set up and ready to go. Please start wr
 
 nut_taskRelated(); //Call the function defined in tasks.js--joy
 articleForm()
-//getArticleData("articles");
+getDate()
+const fakeName = "users"
+const messages = "messages"
+const events = "events"
+const articles = "articles"
+const friends = "friends"
+
+
+// getData(fakeName)
+// getData(messages)
+// getData(events)
+getArticleData("articles")
+// getData(friends)
+//console.log(getData())
+
 eventsjs(); //to test Karla's stuff
+getEventDataFromDatabase(events);
+deleteEventListener();

@@ -1,7 +1,14 @@
 a {
   display: block;
 }
+
 #newMessageId {
-  width: 400px;
-  height: 50px;
+    width: 400px;
+    height: 50px
 }
+
+div {
+    border: 1.5px solid black;
+    background-color: lightgrey
+}
+

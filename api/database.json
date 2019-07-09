@@ -64,6 +64,11 @@
       "username": "misty",
       "password": "karla",
       "id": 13
+    },
+    {
+      "username": "",
+      "password": "",
+      "id": 14
     }
   ],
   "messages": [
@@ -147,109 +152,18 @@
   ],
   "events": [
     {
-      "id": 1,
       "userId": 1,
-      "title": "This is the title",
-      "location": "Nashville, TN",
-      "date": "date"
-    },
-    {
-      "id": 2,
-      "userId": 1,
-      "title": "This is the title",
-      "location": "Nashville, TN",
-      "date": "date"
-    },
-    {
-      "id": 3,
-      "userId": 1,
-      "title": "This is the title",
-      "location": "Nashville, TN",
-      "date": "date"
-    },
-    {
-      "id": 4,
-      "userId": 1,
-      "title": "This is the title",
-      "location": "Nashville, TN",
-      "date": "date"
-    },
-    {
-      "userId": 1,
-      "title": "NSS STUFF",
-      "location": "Nashville",
-      "date": "Today",
-      "id": 6
-    },
-    {
-      "userId": 1,
-      "title": "hi",
-      "location": "heeeey",
-      "date": "hey",
+      "title": "",
+      "location": "",
+      "date": "",
       "id": 7
     },
     {
       "userId": 1,
-      "title": "test",
-      "location": "location",
-      "date": "date",
+      "title": "",
+      "location": "",
+      "date": "",
       "id": 8
-    },
-    {
-      "userId": 1,
-      "title": "hey",
-      "location": "ho",
-      "date": "hey",
-      "id": 9
-    },
-    {
-      "userId": 1,
-      "title": "hello",
-      "location": "nashville",
-      "date": "july",
-      "id": 10
-    },
-    {
-      "userId": 1,
-      "title": "this ",
-      "location": "qork",
-      "date": "may",
-      "id": 11
-    },
-    {
-      "userId": 1,
-      "title": "is",
-      "location": "wokrin",
-      "date": "this",
-      "id": 12
-    },
-    {
-      "userId": 1,
-      "title": "is",
-      "location": "working",
-      "date": "this",
-      "id": 13
-    },
-    {
-      "userId": 1,
-      "title": "is",
-      "location": "working",
-      "date": "this",
-      "id": 14
-    },
-    {
-      "userId": 1,
-      "title": "",
-      "location": "",
-      "date": "",
-      "id": 15
-    },
-    {
-      "userId": 1,
-      "title": "",
-      "location": "",
-      "date": "",
-      "id": 16
     }
   ],
   "tasks": [],
